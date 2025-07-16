@@ -1,74 +1,52 @@
 .category-card {
-  width: 44vw;
-  max-width: 160px;
-  min-width: 95px;
-  aspect-ratio: 1.28/1;
-  background: #18151d;
-  border-radius: 14px;
-  box-shadow: 0 2px 14px 0 rgba(120,90,180,0.11);
+  border-radius: 17px;
   overflow: hidden;
+  box-shadow: 0 2px 16px 0 rgba(80,55,130,0.11);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  position: relative;
+  align-items: stretch;
+  transition: box-shadow 0.15s, transform 0.11s;
+  background: none;
   margin: 0;
-  transition: box-shadow 0.14s, transform 0.13s;
-}
-
-.category-card-img-wrap {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  min-width: 0;
 }
 
 .category-card-img {
   width: 100%;
-  height: 100%;
+  height: 110px;
   object-fit: cover;
-  border-radius: 14px;
   display: block;
+  border-radius: 17px 17px 0 0;
 }
 
 .category-card-title {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  background: linear-gradient(0deg, rgba(32,26,42,0.94) 82%, rgba(32,26,42,0.02) 100%);
+  font-size: 0.97rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 600;
   color: #fff;
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  padding: 5px 6px 4px 6px;
+  background: rgba(22,22,25, 0.38);
   text-align: center;
-  border-radius: 0 0 14px 14px;
+  padding: 6px 0 7px 0;
+  border-radius: 0 0 17px 17px;
   width: 100%;
+  margin: 0;
+  letter-spacing: 0.02em;
   box-sizing: border-box;
-  text-shadow: 0 1px 8px #0003;
-  line-height: 1.09;
-  white-space: normal;
-  font-family: 'Montserrat', 'Arial', sans-serif;
-  opacity: 0.97;
 }
 
-.category-card:active, .category-card:focus {
-  box-shadow: 0 4px 16px 0 rgba(120,90,180,0.14);
-  transform: scale(0.982);
-}
-
-/* Мобильная адаптация */
 @media (max-width: 700px) {
-  .category-card {
-    width: 47vw;
-    min-width: 86px;
-    border-radius: 11px;
-    margin: 0;
-  }
   .category-card-img {
-    border-radius: 11px;
+    height: 22vw;
+    min-height: 67px;
+    border-radius: 13px 13px 0 0;
   }
   .category-card-title {
-    font-size: 0.76rem;
-    padding: 4px 3px 3px 3px;
-    border-radius: 0 0 11px 11px;
+    font-size: 0.85rem;
+    padding: 4px 0 5px 0;
+    border-radius: 0 0 13px 13px;
+  }
+  .category-card {
+    border-radius: 13px;
   }
 }
