@@ -4,14 +4,13 @@ import { products } from "./products";
 import { categories } from "./categories";
 import CategoryCard from "./CategoryCard";
 import ProductCard from "./ProductCard";
-import "./CategoryView.css"; // Только для grid-сетки!
+import "./CategoryView.css";
 
 export default function CategoryView() {
   const { category } = useParams();
   const navigate = useNavigate();
 
   if (!category) {
-    // Категории (грид)
     return (
       <div className="container category-list-page">
         <h2 className="category-list-title">Категории</h2>
@@ -29,8 +28,10 @@ export default function CategoryView() {
     );
   }
 
-  // Товары в выбранной категории (грид)
-  const filtered = products.filter((p) => p.category === category);
+  // Правильный заголовок!
+  const catObj = categories.find(c => c.key === category);
+
+  const filtered = products.filter((p) => p.category === (catObj?.name || category));
 
   return (
     <div className="container category-view-page">
@@ -38,7 +39,9 @@ export default function CategoryView() {
         <button className="back-btn" onClick={() => navigate(-1)}>
           ← Назад
         </button>
-        <h2 style={{ marginLeft: 12 }}>{category}</h2>
+        <h2 style={{ marginLeft: 12 }}>
+          {catObj?.name || category}
+        </h2>
       </div>
       <div className="products-grid">
         {filtered.length === 0 && (
@@ -51,7 +54,6 @@ export default function CategoryView() {
             key={item.id}
             image={item.images[0]}
             name={item.name}
-            country={item.country}
             onMore={() => navigate(`/product/${item.id}`)}
           />
         ))}
