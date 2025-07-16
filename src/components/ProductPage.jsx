@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { products } from "./products";
+import { useCartCtx } from "../context/CartContext";
 import "./ProductPage.css";
 
 function getFlag(country) {
   if (country === "Корея") return "🇰🇷";
-  // Добавь другие страны при необходимости
   return "";
 }
 
@@ -13,22 +13,30 @@ const ProductPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const product = products.find(p => p.id === productId);
-  const [galleryOpen, setGalleryOpen] = useState(false);
+  const { addToCart } = useCartCtx();
+  const [showAll, setShowAll] = useState(false);
 
   if (!product) return <div className="product-notfound">Товар не найден</div>;
+
+  const longDescShort = product.long_desc.length > 200 && !showAll
+    ? product.long_desc.slice(0, 200) + '...'
+    : product.long_desc;
 
   return (
     <div className="product-page-dark">
       <button className="back-btn" onClick={() => navigate(-1)}>← Назад</button>
-      <div className="product-main-flex">
-        {/* Фото слева */}
-        <div className="product-image-block">
+
+      {/* Верхний блок: фото + инфо */}
+      <div className="product-top-row">
+        <div className="product-main-img-wrap">
           <img src={product.images[0]} alt={product.name} className="product-main-img" />
         </div>
-        {/* Информация справа */}
         <div className="product-main-info">
           <div className="product-title-main">{product.name}</div>
           <div className="product-price">{product.price} ₽</div>
+          <div className="product-country-row">
+            <span>{getFlag(product.country)}</span> {product.country}
+          </div>
           <div className="product-rating-row">
             <span className="star-rating">
               {"★".repeat(Math.round(product.rating)) +
@@ -36,16 +44,21 @@ const ProductPage = () => {
             </span>
             <span className="product-rating-num">{product.rating}</span>
           </div>
-          <div className="product-country-main">
-            {getFlag(product.country)} {product.country}
-          </div>
         </div>
       </div>
 
       {/* О препарате */}
       <div className="product-block-section">
         <div className="product-block-title">О препарате</div>
-        <div className="product-block-text">{product.long_desc}</div>
+        <div className="product-block-text">
+          {longDescShort}
+          {product.long_desc.length > 200 && (
+            <span
+              className="show-more-link"
+              onClick={() => setShowAll(v => !v)}
+            >{showAll ? " Скрыть" : " Показать полностью"}</span>
+          )}
+        </div>
         {product.composition && (
           <div className="product-block-composition">
             <strong>Состав:</strong> {product.composition}
@@ -65,14 +78,19 @@ const ProductPage = () => {
         )}
       </div>
 
-      {/* Галерея */}
-      <div className="product-gallery-row">
-        <span className="product-gallery-link" onClick={() => setGalleryOpen(true)}>
-          📷 Смотреть фото
-        </span>
+      {/* Галерея-превью */}
+      <div className="product-gallery-minis">
+        {product.images.slice(0, 3).map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={product.name + " фото " + (i+1)}
+            className="mini-gallery-img"
+          />
+        ))}
       </div>
 
-      {/* PDF-протокол */}
+      {/* PDF протокол */}
       {product.pdf && (
         <div className="product-pdf-row">
           <a
@@ -81,33 +99,34 @@ const ProductPage = () => {
             download
             target="_blank"
             rel="noopener noreferrer"
-            title="Скачать протокол PDF"
+            title="Скачать PDF"
           >
             <span role="img" aria-label="pdf">📄</span> PDF протокол
           </a>
         </div>
       )}
 
-      {/* Остаток и заказ */}
+      {/* "Лучше всего сочетается с" */}
+      {product.combo && (
+        <div className="product-block-section">
+          <div className="product-block-title">Лучше всего сочетается с</div>
+          <div className="product-block-text">{product.combo}</div>
+        </div>
+      )}
+
+      {/* Остаток и кнопка "В корзину" */}
       <div className="product-order-block">
         <div className="product-stock">
           {product.stock > 0 ? `В наличии: ${product.stock} шт.` : "Нет в наличии"}
         </div>
-      </div>
-
-      {/* Модалка с каруселью */}
-      {galleryOpen && (
-        <div className="gallery-modal-bg" onClick={() => setGalleryOpen(false)}>
-          <div className="gallery-modal" onClick={e => e.stopPropagation()}>
-            <button className="close-modal" onClick={() => setGalleryOpen(false)}>✕</button>
-            <div className="gallery-carousel">
-              {product.images.map((img, i) => (
-                <img key={i} src={img} alt="" className="gallery-img" />
-              ))}
-            </div>
+        {product.stock > 0 && (
+          <div className="product-cart-row">
+            <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
+              <span role="img" aria-label="cart">🛒</span> В корзину
+            </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
