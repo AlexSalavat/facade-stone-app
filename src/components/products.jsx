@@ -1,9 +1,7 @@
-// src/components/products.jsx
-
 export const products = [
   {
     id: "botulax-200",
-    category: "Ботулинотоксины",
+    category: "botox", // Исправили!
     name: "Botulax 200",
     country: "Корея",
     rating: 4.8,
@@ -28,7 +26,7 @@ export const products = [
   },
   {
     id: "hutox-100",
-    category: "Ботулинотоксины",
+    category: "botox", // Исправили!
     name: "Hutox 100",
     country: "Корея",
     rating: 4.7,
