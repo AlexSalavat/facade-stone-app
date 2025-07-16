@@ -1,81 +1,47 @@
-.category-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px 11px;
-  padding: 6px 2px 6px 2px;
-}
-
 .category-card {
-  position: relative;
-  border-radius: 17px;
+  background: #22202a;
+  border-radius: 18px;
   overflow: hidden;
-  background: #19161f;
-  box-shadow: 0 2px 12px rgba(82,60,130,0.08);
+  box-shadow: 0 2px 14px rgba(60,45,120,0.10);
+  position: relative;
   cursor: pointer;
-  min-height: 98px;
-  aspect-ratio: 1.25 / 1;
-  transition: box-shadow 0.13s, transform 0.11s;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  min-height: 120px;
+  aspect-ratio: 1.4/1;
+  transition: box-shadow 0.14s, transform 0.12s;
 }
-
-.category-card:active,
-.category-card:focus,
-.category-card:hover {
-  box-shadow: 0 4px 26px rgba(152,120,255,0.15);
-  transform: scale(1.01);
+.category-card:active, .category-card:focus {
+  box-shadow: 0 6px 24px rgba(80,80,160,0.12);
+  transform: translateY(2px) scale(0.98);
 }
 
 .category-card-img {
   width: 100%;
-  height: 100%;
-  min-height: 98px;
+  height: 100px;
   object-fit: cover;
-  object-position: center;
+  pointer-events: none;
+  user-select: none;
   display: block;
-  border-radius: 17px;
-  background: #1a1821;
-  transition: opacity 0.14s;
 }
 
 .category-card-title {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  background: linear-gradient(0deg, #222 91%, #22222200 100%);
+  right: 0;
+  padding: 8px 7px 8px 11px;
+  background: linear-gradient(0deg, #1b1922 92%, #19191c00 100%);
   color: #fff;
-  font-size: 0.91rem;
+  font-size: 0.98rem;
   font-weight: 600;
-  text-align: center;
-  padding: 8px 5px 4px 5px;
-  border-bottom-left-radius: 17px;
-  border-bottom-right-radius: 17px;
+  text-align: left;
   letter-spacing: 0.01em;
-  line-height: 1.1;
-  white-space: pre-line;
+  line-height: 1.08;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  text-shadow: 0 2px 8px #111b;
   z-index: 2;
-  user-select: none;
-}
-
-@media (max-width: 700px) {
-  .category-cards-grid {
-    gap: 11px 7px;
-    padding: 2px 1px 2px 1px;
-  }
-  .category-card {
-    min-height: 85px;
-    border-radius: 13px;
-  }
-  .category-card-title {
-    font-size: 0.82rem;
-    padding: 7px 2px 3px 2px;
-    border-bottom-left-radius: 13px;
-    border-bottom-right-radius: 13px;
-  }
-  .category-card-img {
-    border-radius: 13px;
-    min-height: 85px;
-  }
+  white-space: pre-line;
 }
