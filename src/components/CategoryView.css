@@ -1,75 +1,35 @@
-/* CategoryView.css */
-
 .category-list-page {
-  margin-top: 0;
-  padding-top: 0;
-  width: 100%;
+  width: 100vw;
+  max-width: 470px;
+  margin: 0 auto;
+  padding: 12px 2vw 16px 2vw;
+  background: transparent;
 }
 
 .category-list-title {
-  font-family: 'Montserrat', Arial, sans-serif;
-  font-size: 1.3rem;
-  font-weight: 800;
-  margin: 8px 0 18px 2px;
-  color: #e5dbff;
-  letter-spacing: 0.01em;
+  color: #cdbfff;
+  font-weight: 700;
+  font-size: 1.18rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+  margin-top: 7px;
+  text-align: left;
 }
 
 .category-cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px 16px; /* вертикаль/горизонталь между карточками */
-  margin: 0 auto;
-  max-width: 480px;
-  padding: 0 6px;
-  width: 100%;
+  gap: 15px 13px;
+  margin-top: 10px;
 }
 
-.category-view-page {
-  margin-top: 0;
-  padding-top: 0;
-  width: 100%;
-}
-
-.category-view-top-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  gap: 6px;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px 16px;
-  margin-top: 18px;
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: #bcb7f6;
-  font-size: 1.03rem;
-  font-family: inherit;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 5px 14px 5px 0;
-  outline: none;
-  transition: color 0.12s;
-}
-.back-btn:hover {
-  color: #ff6ca4;
-}
-
-@media (max-width: 540px) {
-  .category-cards-grid,
-  .products-grid {
-    max-width: 100vw;
-    padding: 0 2vw;
-    gap: 13px 7px;
+@media (min-width: 700px) {
+  .category-list-page {
+    max-width: 600px;
+    padding: 30px 0 50px 0;
   }
-  .category-list-title {
-    font-size: 1.08rem;
-    margin: 7px 0 11px 2px;
+  .category-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 19px 18px;
   }
 }
