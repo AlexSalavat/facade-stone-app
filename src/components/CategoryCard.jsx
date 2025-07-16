@@ -3,16 +3,9 @@ import "./CategoryCard.css";
 
 export default function CategoryCard({ image, name, onClick }) {
   return (
-    <div
-      className="category-card"
-      onClick={onClick}
-      tabIndex={0}
-      role="button"
-      aria-label={name}
-      onKeyDown={e => { if (e.key === "Enter" || e.key === " ") onClick(); }}
-    >
-      <img src={image} alt={name} className="category-card-img" draggable={false} />
-      <div className="category-card-title">{name}</div>
+    <div className="category-card-root" onClick={onClick} tabIndex={0} role="button">
+      <img src={image} alt={name} className="category-card-image" />
+      <div className="category-card-label">{name}</div>
     </div>
   );
 }
