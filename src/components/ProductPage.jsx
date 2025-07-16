@@ -50,6 +50,19 @@ const ProductPage = () => {
         </div>
       </div>
 
+      {/* Новая галерея свайпер (под фото и инфо!) */}
+      <div className="product-gallery-swiper">
+        {product.images.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={product.name + " фото " + (i+1)}
+            className="swiper-img"
+            onClick={() => { setGalleryIndex(i); setGalleryOpen(true); }}
+          />
+        ))}
+      </div>
+
       {/* О препарате */}
       <div className="product-block-section">
         <div className="product-block-title">О препарате</div>
@@ -79,19 +92,6 @@ const ProductPage = () => {
             ))}
           </ul>
         )}
-      </div>
-
-      {/* Галерея-превью */}
-      <div className="product-gallery-minis">
-        {product.images.map((img, i) => (
-          <img
-            key={i}
-            src={img}
-            alt={product.name + " фото " + (i+1)}
-            className="mini-gallery-img"
-            onClick={() => { setGalleryIndex(i); setGalleryOpen(true); }}
-          />
-        ))}
       </div>
 
       {/* PDF протокол */}
@@ -144,7 +144,9 @@ const ProductPage = () => {
                   src={img}
                   alt=""
                   className="gallery-img"
-                  style={{ border: i === galleryIndex ? "2px solid #b38cff" : "none" }}
+                  style={{
+                    border: i === galleryIndex ? "2px solid #b38cff" : "none"
+                  }}
                 />
               ))}
             </div>
