@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { products } from "./products";
-import { useCartCtx } from "../context/CartContext";
 import "./ProductPage.css";
 
 function getFlag(country) {
@@ -13,7 +12,6 @@ const ProductPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const product = products.find(p => p.id === productId);
-  const { addToCart } = useCartCtx();
 
   const [showAll, setShowAll] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -24,6 +22,10 @@ const ProductPage = () => {
   const longDescShort = product.long_desc.length > 200 && !showAll
     ? product.long_desc.slice(0, 200) + '...'
     : product.long_desc;
+
+  // Листалки для модалки галереи
+  const galleryPrev = () => setGalleryIndex((i) => (i - 1 + product.images.length) % product.images.length);
+  const galleryNext = () => setGalleryIndex((i) => (i + 1) % product.images.length);
 
   return (
     <div className="product-page-dark">
@@ -50,7 +52,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {/* Новая галерея свайпер (под фото и инфо!) */}
+      {/* Галерея свайпер */}
       <div className="product-gallery-swiper">
         {product.images.map((img, i) => (
           <img
@@ -94,7 +96,15 @@ const ProductPage = () => {
         )}
       </div>
 
-      {/* PDF протокол */}
+      {/* Лучше всего сочетается с */}
+      {product.combo && (
+        <div className="product-block-section">
+          <div className="product-block-title">Лучше всего сочетается с</div>
+          <div className="product-block-text">{product.combo}</div>
+        </div>
+      )}
+
+      {/* PDF протокол — теперь после combo */}
       {product.pdf && (
         <div className="product-pdf-row">
           <a
@@ -110,13 +120,17 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* "Лучше всего сочетается с" */}
-      {product.combo && (
-        <div className="product-block-section">
-          <div className="product-block-title">Лучше всего сочетается с</div>
-          <div className="product-block-text">{product.combo}</div>
-        </div>
-      )}
+      {/* Кнопка “Задать вопрос” */}
+      <div className="product-question-row">
+        <a
+          href="https://t.me/your_manager" // ← заменишь на своего менеджера!
+          className="question-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span role="img" aria-label="question">❓</span> Задать вопрос
+        </a>
+      </div>
 
       {/* Остаток и кнопка "В корзину" */}
       <div className="product-order-block">
@@ -125,28 +139,33 @@ const ProductPage = () => {
         </div>
         {product.stock > 0 && (
           <div className="product-cart-row">
-            <button className="add-to-cart-btn" onClick={() => addToCart(product)}>
+            <button className="add-to-cart-btn" onClick={() => alert('Добавлено в корзину!')}>
               <span role="img" aria-label="cart">🛒</span> В корзину
             </button>
           </div>
         )}
       </div>
 
-      {/* Модалка галереи */}
+      {/* Модалка галереи — листалка */}
       {galleryOpen && (
         <div className="gallery-modal-bg" onClick={() => setGalleryOpen(false)}>
           <div className="gallery-modal" onClick={e => e.stopPropagation()}>
             <button className="close-modal" onClick={() => setGalleryOpen(false)}>✕</button>
-            <div className="gallery-carousel">
-              {product.images.map((img, i) => (
-                <img
+            <div className="gallery-modal-arrows">
+              <button className="gallery-arrow" onClick={galleryPrev}>&lt;</button>
+              <img
+                src={product.images[galleryIndex]}
+                alt=""
+                className="gallery-img"
+              />
+              <button className="gallery-arrow" onClick={galleryNext}>&gt;</button>
+            </div>
+            <div className="gallery-modal-dots">
+              {product.images.map((_, i) => (
+                <span
                   key={i}
-                  src={img}
-                  alt=""
-                  className="gallery-img"
-                  style={{
-                    border: i === galleryIndex ? "2px solid #b38cff" : "none"
-                  }}
+                  className={i === galleryIndex ? "gallery-dot active" : "gallery-dot"}
+                  onClick={() => setGalleryIndex(i)}
                 />
               ))}
             </div>
