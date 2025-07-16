@@ -10,11 +10,8 @@ export default function CategoryView() {
   const { category } = useParams();
   const navigate = useNavigate();
 
-  // Найти выбранную категорию
-  const catObj = categories.find(c => c.key === category);
-
   if (!category) {
-    // Грид-карточки категорий
+    // Список категорий (грид)
     return (
       <div className="container category-list-page">
         <h2 className="category-list-title">Категории</h2>
@@ -32,10 +29,11 @@ export default function CategoryView() {
     );
   }
 
-  // Фильтрация товаров по правильному названию категории
-  const filtered = products.filter(
-    (p) => p.category === (catObj?.name || category)
-  );
+  // Находим объект категории по ключу (key)
+  const catObj = categories.find(c => c.key === category);
+
+  // Показываем товары только из этой категории (по ключу!)
+  const filtered = products.filter((p) => p.category === category);
 
   return (
     <div className="container category-view-page">
@@ -43,23 +41,24 @@ export default function CategoryView() {
         <button className="back-btn" onClick={() => navigate(-1)}>
           ← Назад
         </button>
-        <h2 className="category-title">{catObj?.name || category}</h2>
+        <h2 style={{ marginLeft: 12 }}>
+          {catObj?.name || category}
+        </h2>
       </div>
       <div className="products-grid">
-        {filtered.length === 0 ? (
-          <div className="empty-message">
+        {filtered.length === 0 && (
+          <div style={{ fontSize: 20, color: "#b35" }}>
             Нет товаров в этой категории.
           </div>
-        ) : (
-          filtered.map((item) => (
-            <ProductCard
-              key={item.id}
-              image={item.images[0]}
-              name={item.name}
-              onMore={() => navigate(`/product/${item.id}`)}
-            />
-          ))
         )}
+        {filtered.map((item) => (
+          <ProductCard
+            key={item.id}
+            image={item.images[0]}
+            name={item.name}
+            onMore={() => navigate(`/product/${item.id}`)}
+          />
+        ))}
       </div>
     </div>
   );
