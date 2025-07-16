@@ -23,9 +23,15 @@ const ProductPage = () => {
     ? product.long_desc.slice(0, 200) + '...'
     : product.long_desc;
 
-  // Листалки для модалки галереи
-  const galleryPrev = () => setGalleryIndex((i) => (i - 1 + product.images.length) % product.images.length);
-  const galleryNext = () => setGalleryIndex((i) => (i + 1) % product.images.length);
+  // Галерея листалка
+  const galleryPrev = (e) => {
+    e && e.stopPropagation();
+    setGalleryIndex((i) => (i - 1 + product.images.length) % product.images.length);
+  };
+  const galleryNext = (e) => {
+    e && e.stopPropagation();
+    setGalleryIndex((i) => (i + 1) % product.images.length);
+  };
 
   return (
     <div className="product-page-dark">
@@ -104,7 +110,7 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* PDF протокол — теперь после combo */}
+      {/* PDF протокол — после combo */}
       {product.pdf && (
         <div className="product-pdf-row">
           <a
@@ -123,7 +129,7 @@ const ProductPage = () => {
       {/* Кнопка “Задать вопрос” */}
       <div className="product-question-row">
         <a
-          href="https://t.me/your_manager" // ← заменишь на своего менеджера!
+          href="https://t.me/LumiSkinChannel"
           className="question-btn"
           target="_blank"
           rel="noopener noreferrer"
@@ -146,19 +152,19 @@ const ProductPage = () => {
         )}
       </div>
 
-      {/* Модалка галереи — листалка */}
+      {/* Модалка галереи — стрелки всегда видны, поверх картинки */}
       {galleryOpen && (
         <div className="gallery-modal-bg" onClick={() => setGalleryOpen(false)}>
           <div className="gallery-modal" onClick={e => e.stopPropagation()}>
             <button className="close-modal" onClick={() => setGalleryOpen(false)}>✕</button>
             <div className="gallery-modal-arrows">
-              <button className="gallery-arrow" onClick={galleryPrev}>&lt;</button>
+              <button className="gallery-arrow left" onClick={galleryPrev}>&lt;</button>
               <img
                 src={product.images[galleryIndex]}
                 alt=""
                 className="gallery-img"
               />
-              <button className="gallery-arrow" onClick={galleryNext}>&gt;</button>
+              <button className="gallery-arrow right" onClick={galleryNext}>&gt;</button>
             </div>
             <div className="gallery-modal-dots">
               {product.images.map((_, i) => (
