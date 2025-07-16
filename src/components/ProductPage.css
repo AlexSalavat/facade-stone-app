@@ -77,17 +77,21 @@
 .product-gallery-minis {
   display: flex;
   flex-direction: row;
-  gap: 11px;
+  gap: 17px;
   margin: 15px 0 8px 4px;
+  justify-content: flex-start;
 }
 .mini-gallery-img {
-  width: 51px; height: 51px;
+  width: 68px; height: 68px;
   object-fit: cover;
-  border-radius: 11px;
+  border-radius: 12px;
   background: #23222c;
   border: 1px solid #201e2c;
   box-shadow: 0 1px 7px #3fefa944;
+  cursor: pointer;
+  transition: box-shadow .12s;
 }
+.mini-gallery-img:hover { box-shadow: 0 1px 12px #a9e5ff55; }
 
 .product-pdf-row { margin: 13px 0 0 2px; }
 .product-pdf-link { color: #a8d3ff; font-size: 1rem; text-decoration: underline; cursor: pointer; }
@@ -111,7 +115,72 @@
 }
 .add-to-cart-btn:hover { background: linear-gradient(90deg, #cab8fa 0%, #a8f7fa 100%); color: #4628ba; }
 
+/* Модалка для галереи */
+.gallery-modal-bg {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(14,13,20,0.93);
+  z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+}
+.gallery-modal {
+  background: #161622;
+  border-radius: 20px;
+  box-shadow: 0 6px 28px #0e0922c7;
+  padding: 22px 15px 17px 15px;
+  min-width: 230px; max-width: 92vw;
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+}
+.close-modal {
+  position: absolute; top: 10px; right: 14px;
+  background: none; color: #eee;
+  border: none; font-size: 1.5rem; cursor: pointer;
+}
+.gallery-carousel {
+  display: flex; flex-direction: row; gap: 14px;
+  overflow-x: auto; padding: 12px 0;
+}
+.gallery-img {
+  width: 170px; height: 150px;
+  border-radius: 12px; object-fit: cover;
+  box-shadow: 0 3px 17px #090a14a2; border: 1px solid #222030; background: #16161c;
+}
+
+/* Мобайл стиль - главное фото всегда слева, текст справа! */
 @media (max-width: 700px) {
-  .product-top-row { flex-direction: column; gap: 8px; align-items: center; }
-  .product-main-img-wrap { min-width: 0; }
+  .product-page-dark {
+    padding: 7px 0 85px 0;
+  }
+  .product-top-row {
+    display: grid;
+    grid-template-columns: 38vw 1fr;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .product-main-img-wrap {
+    min-width: 0;
+    max-width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .product-main-img {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+  }
+  .product-main-info {
+    align-items: flex-start;
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .product-gallery-minis {
+    gap: 10px;
+    margin: 15px 0 8px 0;
+    justify-content: flex-start;
+  }
+  .mini-gallery-img {
+    width: 65px; height: 65px;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px #3fefa944;
+  }
 }

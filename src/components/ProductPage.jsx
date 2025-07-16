@@ -14,7 +14,10 @@ const ProductPage = () => {
   const navigate = useNavigate();
   const product = products.find(p => p.id === productId);
   const { addToCart } = useCartCtx();
+
   const [showAll, setShowAll] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
   if (!product) return <div className="product-notfound">Товар не найден</div>;
 
@@ -80,12 +83,13 @@ const ProductPage = () => {
 
       {/* Галерея-превью */}
       <div className="product-gallery-minis">
-        {product.images.slice(0, 3).map((img, i) => (
+        {product.images.map((img, i) => (
           <img
             key={i}
             src={img}
             alt={product.name + " фото " + (i+1)}
             className="mini-gallery-img"
+            onClick={() => { setGalleryIndex(i); setGalleryOpen(true); }}
           />
         ))}
       </div>
@@ -127,6 +131,26 @@ const ProductPage = () => {
           </div>
         )}
       </div>
+
+      {/* Модалка галереи */}
+      {galleryOpen && (
+        <div className="gallery-modal-bg" onClick={() => setGalleryOpen(false)}>
+          <div className="gallery-modal" onClick={e => e.stopPropagation()}>
+            <button className="close-modal" onClick={() => setGalleryOpen(false)}>✕</button>
+            <div className="gallery-carousel">
+              {product.images.map((img, i) => (
+                <img
+                  key={i}
+                  src={img}
+                  alt=""
+                  className="gallery-img"
+                  style={{ border: i === galleryIndex ? "2px solid #b38cff" : "none" }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
