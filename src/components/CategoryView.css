@@ -13,6 +13,21 @@
 .category-cards-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5vw;  /* минимальный зазор между карточками */
+  gap: 0.5vw;
   width: 100%;
+}
+
+/* --- Только для страницы товаров! --- */
+.category-view-page {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+.category-view-top-row {
+  margin-bottom: 8px;
+  padding-top: 0;
+}
+/* Если вдруг сверху остался зазор, добавь еще: */
+.category-view-page .container {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
