@@ -1,37 +1,52 @@
 .category-card {
-  background: #201e26;
-  border-radius: 18px;
+  border-radius: 17px;
   overflow: hidden;
-  box-shadow: 0 1px 11px #2c22530a;
+  box-shadow: 0 2px 16px 0 rgba(80,55,130,0.11);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  position: relative;
-  height: 128px;
-  transition: transform 0.09s, box-shadow 0.14s;
+  align-items: stretch;
+  transition: box-shadow 0.15s, transform 0.11s;
+  background: none;
+  margin: 0;
+  min-width: 0;
 }
+
 .category-card-img {
   width: 100%;
-  height: 100%;
+  height: 135px; /* стало выше! */
   object-fit: cover;
   display: block;
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 17px 17px 0 0;
 }
+
 .category-card-title {
-  position: relative;
-  z-index: 2;
-  background: linear-gradient(to top, #161218e8 90%, #0000 100%);
-  color: #fff;
-  font-size: 0.99rem;
+  font-size: 0.97rem;
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
-  text-align: left;
-  padding: 0.67em 0.75em 0.56em 0.75em;
+  color: #fff;
+  background: rgba(22,22,25, 0.38);
+  text-align: center;
+  padding: 8px 0 9px 0; /* чуть больше паддинг */
+  border-radius: 0 0 17px 17px;
   width: 100%;
+  margin: 0;
+  letter-spacing: 0.02em;
+  box-sizing: border-box;
 }
+
 @media (max-width: 700px) {
-  .category-card { height: 23vw; min-height: 92px; }
-  .category-card-title { font-size: 0.90rem; }
+  .category-card-img {
+    height: 28vw;  /* стало выше для мобильных */
+    min-height: 85px;
+    border-radius: 13px 13px 0 0;
+  }
+  .category-card-title {
+    font-size: 0.85rem;
+    padding: 5px 0 6px 0;
+    border-radius: 0 0 13px 13px;
+  }
+  .category-card {
+    border-radius: 13px;
+  }
 }
