@@ -1,13 +1,14 @@
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px 7px;         /* Плотно, но аккуратно */
-  margin-top: 0;
+  gap: 10px 8px;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
   align-items: flex-start;
 }
 .products-grid-empty {
   color: #b35;
   font-size: 1.1rem;
-  padding: 38px 0 20px 0;
+  padding: 36px 0 18px 0;
   text-align: center;
 }

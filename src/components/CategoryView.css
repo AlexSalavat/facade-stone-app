@@ -17,17 +17,16 @@
   width: 100%;
 }
 
-/* --- Только для страницы товаров! --- */
+/* --- Для страницы товаров (убираем все лишние отступы!) --- */
 .category-view-page {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
 .category-view-top-row {
-  margin-bottom: 8px;
-  padding-top: 0;
+  margin-bottom: 8px !important;
+  padding-top: 0 !important;
 }
-/* Если вдруг сверху остался зазор, добавь еще: */
-.category-view-page .container {
+.container {
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
