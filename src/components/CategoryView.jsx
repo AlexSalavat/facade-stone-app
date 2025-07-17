@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { products } from "./products";
 import { categories } from "./categories";
 import CategoryCard from "./CategoryCard";
-import ProductCard from "./ProductCard";
+import ProductsGrid from "./ProductsGrid"; // вот он!
 import "./CategoryView.css";
+import "./ProductsGrid.css";
 
 export default function CategoryView() {
   const { category } = useParams();
@@ -29,10 +30,7 @@ export default function CategoryView() {
     );
   }
 
-  // Находим объект категории по ключу (key)
   const catObj = categories.find(c => c.key === category);
-
-  // Показываем товары только из этой категории (по ключу!)
   const filtered = products.filter((p) => p.category === category);
 
   return (
@@ -45,21 +43,10 @@ export default function CategoryView() {
           {catObj?.name || category}
         </h2>
       </div>
-      <div className="products-grid">
-        {filtered.length === 0 && (
-          <div style={{ fontSize: 20, color: "#b35" }}>
-            Нет товаров в этой категории.
-          </div>
-        )}
-        {filtered.map((item) => (
-          <ProductCard
-            key={item.id}
-            image={item.images[0]}
-            name={item.name}
-            onMore={() => navigate(`/product/${item.id}`)}
-          />
-        ))}
-      </div>
+      <ProductsGrid
+        products={filtered}
+        onProductClick={(item) => navigate(`/product/${item.id}`)}
+      />
     </div>
   );
 }
