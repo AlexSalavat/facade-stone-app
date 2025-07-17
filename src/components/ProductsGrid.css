@@ -1,9 +1,9 @@
 .products-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 11px 8px;
-  margin-top: 2px;
-  justify-items: center;
+  gap: 16px 12px;           /* уменьшай gap для более плотной сетки */
+  margin-top: 0;            /* убери отступ сверху */
+  align-items: flex-start;  /* поднимет контент к верху */
 }
 .products-grid-empty {
   color: #b35;
