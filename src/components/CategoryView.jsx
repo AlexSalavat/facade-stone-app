@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { products } from "./products";
 import { categories } from "./categories";
 import CategoryCard from "./CategoryCard";
-import ProductsGrid from "./ProductsGrid"; // вот он!
+import ProductsGrid from "./ProductsGrid";
 import "./CategoryView.css";
 import "./ProductsGrid.css";
 
@@ -12,7 +12,7 @@ export default function CategoryView() {
   const navigate = useNavigate();
 
   if (!category) {
-    // Список категорий (грид)
+    // Список категорий
     return (
       <div className="container category-list-page">
         <h2 className="category-list-title">Категории</h2>
@@ -34,7 +34,8 @@ export default function CategoryView() {
   const filtered = products.filter((p) => p.category === category);
 
   return (
-    <div className="container category-view-page">
+    <div className="category-view-page">
+      {/* убрали container! */}
       <div className="category-view-top-row">
         <button className="back-btn" onClick={() => navigate(-1)}>
           ← Назад
