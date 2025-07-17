@@ -14,7 +14,7 @@
 
 .category-card-img {
   width: 100%;
-  height: 135px; /* стало выше! */
+  height: 110px;
   object-fit: cover;
   display: block;
   border-radius: 17px 17px 0 0;
@@ -27,7 +27,7 @@
   color: #fff;
   background: rgba(22,22,25, 0.38);
   text-align: center;
-  padding: 8px 0 9px 0; /* чуть больше паддинг */
+  padding: 6px 0 7px 0;
   border-radius: 0 0 17px 17px;
   width: 100%;
   margin: 0;
@@ -37,13 +37,13 @@
 
 @media (max-width: 700px) {
   .category-card-img {
-    height: 28vw;  /* стало выше для мобильных */
-    min-height: 85px;
+    height: 22vw;
+    min-height: 67px;
     border-radius: 13px 13px 0 0;
   }
   .category-card-title {
     font-size: 0.85rem;
-    padding: 5px 0 6px 0;
+    padding: 4px 0 5px 0;
     border-radius: 0 0 13px 13px;
   }
   .category-card {
