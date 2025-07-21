@@ -34,7 +34,8 @@ const ProductPage = () => {
   return (
     <div className="productpage-root">
       <BackButton />
-      {/* Новый красивый блок — фото слева, инфо справа */}
+
+      {/* Новый блок: фото слева, инфо справа */}
       <div className="productpage-headerrow">
         <div className="productpage-header-imgcol">
           <div className="productpage-header-photo" onClick={() => setShowFullImg(true)}>
@@ -42,8 +43,8 @@ const ProductPage = () => {
           </div>
         </div>
         <div className="productpage-header-infocol">
-          <h2 className="productpage-title">{product.name}</h2>
-          <div className="productpage-meta">
+          <div className="productpage-title">{product.name}</div>
+          <div className="productpage-infometa">
             <span className="productpage-price">{product.price} ₽</span>
             <span className="productpage-country">🇰🇷 {product.country}</span>
             <span className="productpage-rating">★ {product.rating}</span>

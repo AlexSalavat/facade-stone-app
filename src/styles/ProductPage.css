@@ -12,24 +12,26 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 15px;
-  margin: 15px 0 10px 0;
+  gap: 17px;
+  margin: 20px 0 14px 0;
   width: 100%;
 }
 .productpage-header-imgcol {
-  flex: 0 0 84px;
-  max-width: 84px;
+  flex: 0 0 102px;
+  max-width: 102px;
+  display: flex;
+  align-items: center;
 }
 .productpage-header-photo {
-  width: 84px;
-  height: 84px;
-  border-radius: 14px;
+  width: 102px;
+  height: 102px;
+  border-radius: 18px;
   overflow: hidden;
-  background: #1b1b1b;
+  background: #222;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px #18181860;
+  box-shadow: 0 2px 8px #18181850;
   cursor: pointer;
 }
 .productpage-header-photo img {
@@ -37,52 +39,75 @@
   height: 100%;
   object-fit: cover;
 }
+
 .productpage-header-infocol {
   flex: 1 1 auto;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
+
 .productpage-title {
-  font-size: 1.13rem;
-  font-weight: 600;
-  margin: 0 0 8px 0;
+  font-size: 1.23rem;
+  font-weight: 800;
   color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  text-shadow: 0 1px 4px #00000030;
+  letter-spacing: 0.01em;
 }
-.productpage-meta {
+
+.productpage-infometa {
   display: flex;
-  gap: 10px 12px;
   align-items: center;
-  font-size: 0.98rem;
-  font-weight: 500;
+  gap: 14px;
+  margin-top: 2px;
 }
 .productpage-price {
   color: #47e978;
-  font-weight: 600;
-  font-size: 1.11rem;
-  margin-right: 6px;
+  font-size: 1.09rem;
+  font-weight: 700;
 }
 .productpage-country {
-  color: #e2e2e2;
+  color: #cdd;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 .productpage-rating {
-  color: #ffd444;
+  color: #ffe57e;
+  font-size: 0.91rem;
+  font-weight: 600;
 }
+
 @media (max-width: 600px) {
   .productpage-headerrow {
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 12px;
     margin-bottom: 8px;
   }
   .productpage-header-imgcol {
-    flex-basis: 66px;
-    max-width: 66px;
+    flex-basis: 82px;
+    max-width: 82px;
   }
   .productpage-header-photo {
-    width: 66px;
-    height: 66px;
-    border-radius: 10px;
+    width: 82px;
+    height: 82px;
+    border-radius: 13px;
+  }
+  .productpage-title {
+    font-size: 1.08rem;
+    margin-bottom: 7px;
+  }
+  .productpage-infometa {
+    gap: 10px;
+  }
+  .productpage-price {
+    font-size: 1rem;
+  }
+  .productpage-country,
+  .productpage-rating {
+    font-size: 0.86rem;
   }
 }
 
