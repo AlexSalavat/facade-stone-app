@@ -33,7 +33,6 @@ const ProductPage = () => {
   // Парсим состав
   let composition = product.composition;
   if (!composition) {
-    // Попробуем достроить автоматически по названию категории/товара:
     if (product.category === "botox") composition = "Ботулинический токсин типа A (Clostridium Botulinum Toxin Type A)";
     else if (product.category === "fillers") composition = "Стабилизированная гиалуроновая кислота, лидокаин";
     else if (product.category === "biorevitalization") composition = "Гиалуроновая кислота, пептиды, коэнзимы";
