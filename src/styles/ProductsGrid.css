@@ -1,14 +1,10 @@
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 15px;
   padding: 18px 8px 70px 8px;
   background: #191919;
-  min-height: 85vh;
-}
-.no-products {
-  color: #fff;
-  text-align: center;
-  margin: 32px 0;
-  font-size: 1.1rem;
+  /* min-height: 85vh; */   /* если есть — можно оставить или убрать */
+  /* grid-auto-rows: 1fr; */ /* УДАЛИТЬ если было! */
+  align-items: start;        /* Добавить! */
 }
