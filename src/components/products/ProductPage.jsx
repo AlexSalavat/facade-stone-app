@@ -30,6 +30,16 @@ const ProductPage = () => {
       .filter(x => x.length > 1);
   }
 
+  // Парсим состав
+  let composition = product.composition;
+  if (!composition) {
+    // Попробуем достроить автоматически по названию категории/товара:
+    if (product.category === "botox") composition = "Ботулинический токсин типа A (Clostridium Botulinum Toxin Type A)";
+    else if (product.category === "fillers") composition = "Стабилизированная гиалуроновая кислота, лидокаин";
+    else if (product.category === "biorevitalization") composition = "Гиалуроновая кислота, пептиды, коэнзимы";
+    else composition = "Активные компоненты согласно спецификации препарата";
+  }
+
   return (
     <div className="productpage-root">
       <BackButton />
@@ -46,7 +56,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {/* Галерея — отдельные фото, кликабельные */}
+      {/* Галерея мини-фото */}
       {product.images.length > 1 && (
         <div className="productpage-gallery">
           {product.images.map((img, idx) => (
@@ -70,6 +80,12 @@ const ProductPage = () => {
       <div className="productpage-section">
         <div className="productpage-section-title">О препарате</div>
         <div className="productpage-desc">{descMain}</div>
+      </div>
+
+      {/* Состав */}
+      <div className="productpage-section">
+        <div className="productpage-section-title blue">Состав</div>
+        <div className="productpage-composition">{composition}</div>
       </div>
 
       {/* Преимущества */}
