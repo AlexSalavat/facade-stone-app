@@ -7,8 +7,7 @@ import '../../styles/ProductPage.css';
 const ProductPage = () => {
   const { productId } = useParams();
   const product = products.find(p => String(p.id) === String(productId));
-  const [showFullImg, setShowFullImg] = useState(false);
-  const [imgToShow, setImgToShow] = useState("");
+  const [fullImg, setFullImg] = useState(null);
 
   if (!product) {
     return (
@@ -19,40 +18,40 @@ const ProductPage = () => {
     );
   }
 
-  // --- описание/преимущества парсинг ---
-  let description = product.description || "";
-  let descMain = description;
+  // Парсим преимущества
+  let descMain = product.description;
   let advantages = [];
-  if (description.includes("Преимущества")) {
-    descMain = description.split("Преимущества")[0].trim();
-    advantages = description.split("Преимущества:")[1]
-      ?.split('\n')
-      .filter(x => x && x.trim().length > 2 && !x.includes('Форма выпуска'))
-      .map(x => x.replace(/^[-–▪️•]+/, '').trim());
+  if (product.description?.includes("Преимущества:")) {
+    const [main, adv] = product.description.split("Преимущества:");
+    descMain = main.trim();
+    advantages = adv
+      .split('\n')
+      .map(x => x.replace(/^[-–▪️•]+/, '').trim())
+      .filter(x => x.length > 1);
   }
 
   return (
     <div className="productpage-root">
       <BackButton />
 
-      {/* Шапка с фото и текстом */}
-      <div className="productpage-cardrow">
-        <div className="productpage-imgblock">
+      {/* Хедер — фото и текст в линию */}
+      <div className="productpage-header">
+        <div className="productpage-mainimg">
           <img src={product.images[0]} alt={product.name} />
         </div>
-        <div className="productpage-infoblock">
+        <div className="productpage-headinfo">
           <div className="productpage-title">{product.name}</div>
           <div className="productpage-price">{product.price} ₽</div>
           <div className="productpage-country">🇰🇷 {product.country}</div>
-          <div className="productpage-ratingrow">
-            <span className="productpage-star">★</span>
-            <span className="productpage-ratingnum">{product.rating}</span>
+          <div className="productpage-rating">
+            <span>★</span>
+            <span>{product.rating}</span>
           </div>
         </div>
       </div>
 
-      {/* Галерея снизу */}
-      {product.images?.length > 1 && (
+      {/* Галерея — отдельные фото, кликабельные */}
+      {product.images.length > 1 && (
         <div className="productpage-gallery">
           {product.images.map((img, idx) => (
             <img
@@ -60,37 +59,36 @@ const ProductPage = () => {
               src={img}
               alt=""
               className="productpage-gallery-img"
-              onClick={() => {
-                setShowFullImg(true);
-                setImgToShow(img);
-              }}
+              onClick={() => setFullImg(img)}
             />
           ))}
         </div>
       )}
-
-      {/* Крупное фото (модалка) */}
-      {showFullImg && (
-        <div className="productpage-fullimg-modal" onClick={() => setShowFullImg(false)}>
-          <img src={imgToShow} alt="" />
+      {fullImg && (
+        <div className="productpage-fullimg-modal" onClick={() => setFullImg(null)}>
+          <img src={fullImg} alt="gallery" />
         </div>
       )}
 
-      {/* Описание, преимущества и т.д. */}
-      <div className="productpage-descblock">
+      {/* Описание */}
+      <div className="productpage-section">
         <div className="productpage-section-title">О препарате</div>
         <div className="productpage-desc">{descMain}</div>
       </div>
+
+      {/* Преимущества */}
       {advantages.length > 0 && (
-        <div className="productpage-descblock">
+        <div className="productpage-section">
           <div className="productpage-section-title green">Преимущества</div>
           <ul className="productpage-advantages">
             {advantages.map((x, i) => <li key={i}>{x}</li>)}
           </ul>
         </div>
       )}
+
+      {/* Сочетаемость */}
       {product.combo && (
-        <div className="productpage-descblock">
+        <div className="productpage-section">
           <div className="productpage-section-title blue">Лучше всего сочетается с:</div>
           <div className="productpage-combo">{product.combo}</div>
         </div>
