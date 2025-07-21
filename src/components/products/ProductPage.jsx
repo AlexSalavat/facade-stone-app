@@ -7,8 +7,8 @@ import '../../styles/ProductPage.css';
 const ProductPage = () => {
   const { productId } = useParams();
   const product = products.find(p => String(p.id) === String(productId));
-  const [activeImg, setActiveImg] = useState(product?.images?.[0] || "");
   const [showFullImg, setShowFullImg] = useState(false);
+  const [imgToShow, setImgToShow] = useState("");
 
   if (!product) {
     return (
@@ -35,19 +35,22 @@ const ProductPage = () => {
     <div className="productpage-root">
       <BackButton />
 
-      {/* Новый блок: фото слева, инфо справа */}
+      {/* Фото слева, текст справа, больше фото! */}
       <div className="productpage-headerrow">
         <div className="productpage-header-imgcol">
-          <div className="productpage-header-photo" onClick={() => setShowFullImg(true)}>
-            <img src={activeImg} alt={product.name} />
+          <div className="productpage-header-photo">
+            <img src={product.images[0]} alt={product.name} />
           </div>
         </div>
         <div className="productpage-header-infocol">
           <div className="productpage-title">{product.name}</div>
-          <div className="productpage-infometa">
-            <span className="productpage-price">{product.price} ₽</span>
-            <span className="productpage-country">🇰🇷 {product.country}</span>
-            <span className="productpage-rating">★ {product.rating}</span>
+          <div className="productpage-price">{product.price} ₽</div>
+          <div className="productpage-country">🇰🇷 {product.country}</div>
+          <div className="productpage-rating">
+            <span className="productpage-stars">
+              {'★'.repeat(Math.round(product.rating))}
+            </span>
+            <span className="productpage-ratingnum">{product.rating}</span>
           </div>
         </div>
       </div>
@@ -60,8 +63,11 @@ const ProductPage = () => {
               key={idx}
               src={img}
               alt=""
-              className={`productpage-gallery-img${img === activeImg ? ' active' : ''}`}
-              onClick={() => setActiveImg(img)}
+              className="productpage-gallery-img"
+              onClick={() => {
+                setShowFullImg(true);
+                setImgToShow(img);
+              }}
             />
           ))}
         </div>
@@ -70,13 +76,13 @@ const ProductPage = () => {
       {/* Крупное фото по тапу */}
       {showFullImg && (
         <div className="productpage-fullimg-modal" onClick={() => setShowFullImg(false)}>
-          <img src={activeImg} alt="" />
+          <img src={imgToShow} alt="" />
         </div>
       )}
 
       {/* Описание */}
       <div className="productpage-descblock">
-        <div className="productpage-section-title">Про препарат</div>
+        <div className="productpage-section-title">О препарате</div>
         <div className="productpage-desc">{descMain}</div>
       </div>
 
