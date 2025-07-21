@@ -1,15 +1,19 @@
-// src/components/products/ProductCard.jsx
-
 import React from "react";
-import { Link } from "react-router-dom";
-import "./ProductCard.css";
+import { useNavigate } from "react-router-dom";
+import "./ProductsGrid.css"; // Используем те же стили, что и в сетке
 
-const ProductCard = ({ id, name, images }) => {
+const ProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   return (
-    <Link to={`/product/${id}`} className="product-card">
-      <img src={images[0]} alt={name} className="product-image" />
-      <div className="product-name">{name}</div>
-    </Link>
+    <div
+      className="product-card"
+      onClick={() => navigate(`/product/${product.id}`)}
+      style={{ cursor: "pointer" }}
+    >
+      <img src={product.images[0]} alt={product.name} />
+      <h3>{product.name}</h3>
+    </div>
   );
 };
 
