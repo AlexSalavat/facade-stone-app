@@ -12,18 +12,20 @@
   min-width: 0;
   max-width: 100%;
   min-height: 0;
+  height: 100%;
 }
 .product-card:hover {
   box-shadow: 0 4px 16px rgba(35,245,83,0.08);
 }
 .product-card-image-wrap {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  min-height: 120px;
-  max-height: 160px;
+  height: 140px;
+  background: #181818;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   border-radius: 14px;
-  background: #181818;
   margin-bottom: 7px;
 }
 .product-card-image {
