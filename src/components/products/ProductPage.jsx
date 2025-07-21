@@ -19,7 +19,7 @@ const ProductPage = () => {
     );
   }
 
-  // Парсим преимущества
+  // Преимущества
   let description = product.description || "";
   let descMain = description;
   let advantages = [];
@@ -35,14 +35,13 @@ const ProductPage = () => {
     <div className="productpage-root">
       <BackButton />
 
-      {/* Фото слева, текст справа, больше фото! */}
-      <div className="productpage-headerrow">
-        <div className="productpage-header-imgcol">
-          <div className="productpage-header-photo">
+      <div className="productpage-headerrow bigphoto">
+        <div className="productpage-header-imgcol big">
+          <div className="productpage-header-photo big">
             <img src={product.images[0]} alt={product.name} />
           </div>
         </div>
-        <div className="productpage-header-infocol">
+        <div className="productpage-header-infocol tight">
           <div className="productpage-title">{product.name}</div>
           <div className="productpage-price">{product.price} ₽</div>
           <div className="productpage-country">🇰🇷 {product.country}</div>
@@ -73,7 +72,7 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* Крупное фото по тапу */}
+      {/* Крупное фото (модалка) */}
       {showFullImg && (
         <div className="productpage-fullimg-modal" onClick={() => setShowFullImg(false)}>
           <img src={imgToShow} alt="" />
@@ -104,7 +103,7 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* PDF + Кнопки */}
+      {/* PDF и кнопки */}
       <div className="productpage-btns">
         {product.pdf && (
           <a href={product.pdf} className="productpage-pdf" target="_blank" rel="noopener noreferrer">
