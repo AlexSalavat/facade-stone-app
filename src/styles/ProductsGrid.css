@@ -1,8 +1,14 @@
-/* styles/ProductsGrid.css */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-  gap: 16px;
-  padding: 0 12px;
-  margin-bottom: 60px;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: 15px;
+  padding: 18px 8px 70px 8px;
+  background: #191919;
+  min-height: 85vh;
+}
+.no-products {
+  color: #fff;
+  text-align: center;
+  margin: 32px 0;
+  font-size: 1.1rem;
 }

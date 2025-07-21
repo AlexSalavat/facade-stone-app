@@ -1,4 +1,3 @@
-// src/components/products/ProductCard.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/ProductCard.css';
@@ -6,14 +5,17 @@ import '../../styles/ProductCard.css';
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
+  if (!product) return null;
+
   return (
     <div className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
       <div className="product-card-image-wrap">
         <img
-          src={product.images?.[0]}
+          src={product.images && product.images[0] ? product.images[0] : '/images/placeholder.webp'}
           alt={product.name}
           className="product-card-image"
           loading="lazy"
+          style={{ width: "100%", height: "120px", objectFit: "cover" }}
         />
       </div>
       <div className="product-card-info">

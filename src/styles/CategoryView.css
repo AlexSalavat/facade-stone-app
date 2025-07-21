@@ -1,8 +1,17 @@
-/* src/components/categories/CategoryView.css */
-
+.category-view {
+  background: #161616;
+  min-height: 100vh;
+  color: #fff;
+  padding-bottom: 70px;
+}
 .category-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 16px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+  padding: 22px 12px;
+}
+.top-bar {
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
 }

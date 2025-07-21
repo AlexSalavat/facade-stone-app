@@ -4,8 +4,8 @@ import { categories } from "../../data/categories";
 import { products } from "../../data/products";
 import ProductsGrid from "../products/ProductsGrid";
 import CategoryCard from "./CategoryCard";
-import BackButton from "../shared/BackButton";
-import "../../styles/CategoryView.css";
+import BackButton from "../BackButton";
+import '../../styles/CategoryView.css';
 
 const CategoryView = () => {
   const { category } = useParams();

@@ -1,7 +1,6 @@
-// components/BackButton.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './BackButton.css';
+import '../styles/BackButton.css';
 
 const BackButton = ({ onClick, className = "" }) => {
   const navigate = useNavigate();

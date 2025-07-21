@@ -1,29 +1,26 @@
-// src/components/shared/BottomNav.jsx
-
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./BottomNav.css";
+import '../../styles/BottomNav.css';
+
+const navItems = [
+  { label: "Каталог", path: "/catalog" },
+  { label: "Новости", path: "/news" },
+  { label: "Полезное", path: "/useful" },
+  { label: "Корзина", path: "/cart" },
+];
 
 const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const navItems = [
-    { label: "Каталог", path: "/catalog", emoji: "📦" },
-    { label: "Новости", path: "/news", emoji: "📰" },
-    { label: "Полезное", path: "/useful", emoji: "📚" },
-    { label: "Корзина", path: "/cart", emoji: "🛒" },
-  ];
 
   return (
     <nav className="bottom-nav">
       {navItems.map(item => (
         <button
           key={item.path}
-          className={location.pathname === item.path ? "active" : ""}
           onClick={() => navigate(item.path)}
+          className={location.pathname.startsWith(item.path) ? "active" : ""}
         >
-          <span style={{ fontSize: "20px" }}>{item.emoji}</span><br />
           {item.label}
         </button>
       ))}

@@ -1,10 +1,39 @@
-// components/ProductPage.jsx
 import React, { useState } from 'react';
-import BackButton from './BackButton';
-import './ProductPage.css';
+import { useParams } from 'react-router-dom';
+import BackButton from '../BackButton';
+import '../../styles/ProductPage.css';
+import { products } from '../../data/products';
 
-const ProductPage = ({ product }) => {
-  const [mainImg, setMainImg] = useState(product.images?.[0] || "");
+const ProductPage = () => {
+  const { productId } = useParams();
+  const product = products.find(p => String(p.id) === String(productId));
+  const [mainImg, setMainImg] = useState(product?.images?.[0] || "");
+
+  if (!product) {
+    return (
+      <div className="product-page">
+        <BackButton />
+        <h2>Товар не найден</h2>
+      </div>
+    );
+  }
+
+  // Парсим преимущества
+  let description = product.description || "";
+  let advantages = [];
+  let descMain = description;
+
+  if (description.includes("Преимущества:")) {
+    const parts = description.split("Преимущества:");
+    descMain = parts[0].trim();
+    const advText = parts[1]
+      .replace(/Преимущества препарата:|Преимущества:/g, "")
+      .replace(/^[-–▪️•]+/gm, "")
+      .replace(/^\s+/gm, "")
+      .split('\n')
+      .filter(l => l.trim() && !l.trim().startsWith("Форма выпуска:") && !l.trim().startsWith("Показания:"));
+    advantages = advText;
+  }
 
   return (
     <div className="product-page">
@@ -38,13 +67,13 @@ const ProductPage = ({ product }) => {
         </a>
       )}
 
-      <div className="product-desc">{product.long_desc}</div>
+      <div className="product-desc">{descMain}</div>
 
-      {product.advantages && (
+      {advantages.length > 0 && (
         <>
           <div className="section-title adv-title">Преимущества:</div>
           <ul className="product-advantages">
-            {product.advantages.map((adv, idx) => (
+            {advantages.map((adv, idx) => (
               <li key={idx}>{adv}</li>
             ))}
           </ul>
@@ -59,7 +88,12 @@ const ProductPage = ({ product }) => {
       )}
 
       <div className="product-buttons">
-        <button className="btn ask-btn" onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}>Задать вопрос</button>
+        <button
+          className="btn ask-btn"
+          onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}
+        >
+          Задать вопрос
+        </button>
         <button className="btn cart-btn">В корзину</button>
       </div>
     </div>
