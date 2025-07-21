@@ -1,99 +1,106 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BackButton from '../BackButton';
-import '../../styles/ProductPage.css';
 import { products } from '../../data/products';
+import '../../styles/ProductPage.css';
 
 const ProductPage = () => {
   const { productId } = useParams();
   const product = products.find(p => String(p.id) === String(productId));
-  const [mainImg, setMainImg] = useState(product?.images?.[0] || "");
+  const [activeImg, setActiveImg] = useState(product?.images?.[0] || "");
+  const [showFullImg, setShowFullImg] = useState(false);
 
   if (!product) {
     return (
-      <div className="product-page">
+      <div className="productpage-root">
         <BackButton />
         <h2>Товар не найден</h2>
       </div>
     );
   }
 
-  // Парсим преимущества
-  let description = product.description || "";
-  let advantages = [];
-  let descMain = description;
-
-  if (description.includes("Преимущества:")) {
-    const parts = description.split("Преимущества:");
-    descMain = parts[0].trim();
-    const advText = parts[1]
-      .replace(/Преимущества препарата:|Преимущества:/g, "")
-      .replace(/^[-–▪️•]+/gm, "")
-      .replace(/^\s+/gm, "")
-      .split('\n')
-      .filter(l => l.trim() && !l.trim().startsWith("Форма выпуска:") && !l.trim().startsWith("Показания:"));
-    advantages = advText;
-  }
-
   return (
-    <div className="product-page">
-      <BackButton className="mb-2" />
+    <div className="productpage-root">
+      <BackButton />
+      <div className="productpage-mainrow">
+        {/* Фото слева */}
+        <div className="productpage-photo-col">
+          <div
+            className="productpage-photo"
+            onClick={() => setShowFullImg(true)}
+          >
+            <img src={activeImg} alt={product.name} />
+          </div>
+        </div>
+        {/* Инфо справа */}
+        <div className="productpage-info-col">
+          <h2 className="productpage-title">{product.name}</h2>
+          <div className="productpage-meta">
+            <span className="productpage-price">{product.price} ₽</span>
+            <span className="productpage-country">🇰🇷 {product.country}</span>
+            <span className="productpage-rating">★ {product.rating}</span>
+          </div>
+        </div>
+      </div>
 
-      <div className="product-gallery">
-        <img src={mainImg} alt={product.name} className="product-main-img" />
-        <div className="product-thumbnails">
+      {/* Галерея снизу */}
+      {product.images?.length > 1 && (
+        <div className="productpage-gallery">
           {product.images.map((img, idx) => (
             <img
               key={idx}
               src={img}
-              alt={`img-${idx}`}
-              className={`product-thumb ${img === mainImg ? "active" : ""}`}
-              onClick={() => setMainImg(img)}
+              alt=""
+              className={`productpage-gallery-img${img === activeImg ? ' active' : ''}`}
+              onClick={() => setActiveImg(img)}
             />
           ))}
         </div>
-      </div>
-
-      <h2 className="product-title">{product.name}</h2>
-      <div className="product-meta">
-        <span className="product-price">{product.price} ₽</span>
-        <span className="product-country">{product.country}</span>
-        <span className="product-rating">★ {product.rating}</span>
-      </div>
-
-      {product.pdf && (
-        <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="product-pdf-link">
-          📄 Открыть PDF
-        </a>
       )}
 
-      <div className="product-desc">{descMain}</div>
+      {/* Крупное фото по тапу */}
+      {showFullImg && (
+        <div className="productpage-fullimg-modal" onClick={() => setShowFullImg(false)}>
+          <img src={activeImg} alt="" />
+        </div>
+      )}
 
-      {advantages.length > 0 && (
-        <>
-          <div className="section-title adv-title">Преимущества:</div>
-          <ul className="product-advantages">
-            {advantages.map((adv, idx) => (
-              <li key={idx}>{adv}</li>
-            ))}
+      {/* Описание */}
+      <div className="productpage-descblock">
+        <div className="productpage-section-title">Про препарат</div>
+        <div className="productpage-desc">{(product.description || '').split('Преимущества')[0].trim()}</div>
+      </div>
+
+      {/* Преимущества */}
+      {product.description && product.description.includes('Преимущества') && (
+        <div className="productpage-descblock">
+          <div className="productpage-section-title green">Преимущества</div>
+          <ul className="productpage-advantages">
+            {product.description
+              .split('Преимущества:')[1]
+              ?.split('\n')
+              .filter(x => x && x.trim().length > 2 && !x.includes('Форма выпуска'))
+              .map((x, i) => <li key={i}>{x.replace(/^[-–▪️•]+/,'').trim()}</li>)}
           </ul>
-        </>
+        </div>
       )}
 
+      {/* Сочетается с */}
       {product.combo && (
-        <>
-          <div className="section-title combo-title">Лучше всего сочетается с:</div>
-          <div className="product-combo">{product.combo}</div>
-        </>
+        <div className="productpage-descblock">
+          <div className="productpage-section-title blue">Лучше всего сочетается с:</div>
+          <div className="productpage-combo">{product.combo}</div>
+        </div>
       )}
 
-      <div className="product-buttons">
-        <button
-          className="btn ask-btn"
-          onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}
-        >
-          Задать вопрос
-        </button>
+      {/* PDF + Кнопки */}
+      <div className="productpage-btns">
+        {product.pdf && (
+          <a href={product.pdf} className="productpage-pdf" target="_blank" rel="noopener noreferrer">
+            📄 Открыть протокол препарата (PDF)
+          </a>
+        )}
+        <button className="btn ask-btn" onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}>Задать вопрос</button>
         <button className="btn cart-btn">В корзину</button>
       </div>
     </div>
