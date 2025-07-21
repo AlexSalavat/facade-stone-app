@@ -34,19 +34,15 @@ const ProductPage = () => {
     <div className="productpage-root">
       <BackButton />
 
-      {/* Хедер — фото и текст в линию */}
-      <div className="productpage-header">
-        <div className="productpage-mainimg">
-          <img src={product.images[0]} alt={product.name} />
+      <div className="productpage-mainrow">
+        <div className="productpage-imgcol">
+          <img src={product.images[0]} alt={product.name} className="productpage-mainimg2" />
         </div>
-        <div className="productpage-headinfo">
-          <div className="productpage-title">{product.name}</div>
-          <div className="productpage-price">{product.price} ₽</div>
-          <div className="productpage-country">🇰🇷 {product.country}</div>
-          <div className="productpage-rating">
-            <span>★</span>
-            <span>{product.rating}</span>
-          </div>
+        <div className="productpage-infocol">
+          <div className="productpage-title2">{product.name}</div>
+          <div className="productpage-price2">{product.price} ₽</div>
+          <div className="productpage-country2">🇰🇷 {product.country}</div>
+          <div className="productpage-rating2">★ {product.rating}</div>
         </div>
       </div>
 
