@@ -24,8 +24,8 @@ const ProductPage = () => {
           <img src={product.images[0]} alt={product.name} className="main-image clickable" />
         </div>
         <div className="product-details">
-          <h1>{product.name}</h1>
-          <div className="price green">{product.price} ₽</div>
+          <h1 className="product-title">{product.name}</h1>
+          <div className="price-label green">{product.price} ₽</div>
           <div className="origin">
             <span role="img" aria-label={product.country}>{product.country === "Корея" ? "🇰🇷" : ""}</span>
             <span>{product.country}</span>
@@ -56,8 +56,7 @@ const ProductPage = () => {
           {product.description
             .split("\n")
             .filter(l => l.trim().startsWith("-"))
-            .map((l, i) => <li key={i}>{l.replace(/^- /, "")}</li>)
-          }
+            .map((l, i) => <li key={i}>{l.replace(/^- /, "")}</li>)}
         </ul>
       </div>
 
