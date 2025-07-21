@@ -1,11 +1,9 @@
-/* ProductPage.css */
-
 .product-page {
   background-color: #0d0d0d;
   color: white;
   padding: 16px;
   min-height: 100vh;
-  font-family: sans-serif;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .top-bar {
@@ -20,6 +18,12 @@
   color: #ccc;
   font-size: 16px;
   cursor: pointer;
+  margin-right: 8px;
+}
+
+.back-button::before {
+  content: "← ";
+  font-size: 18px;
 }
 
 .main-info {
@@ -30,7 +34,7 @@
 }
 
 .main-image-wrapper {
-  flex: 1 1 40%;
+  flex: 1 1 45%;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -38,8 +42,9 @@
 }
 
 .main-image {
-  width: 100%;
-  max-width: 200px;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -48,17 +53,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 4px;
 }
 
 .product-title {
-  font-size: 24px;
-  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: bold;
   color: white;
+  text-align: left;
 }
 
 .price-label {
   font-size: 20px;
-  margin-bottom: 8px;
   font-weight: bold;
   color: #4caf50;
 }
@@ -68,21 +74,19 @@
   gap: 6px;
   font-size: 14px;
   align-items: center;
-  margin-bottom: 8px;
   color: #ccc;
 }
 
 .rating {
   color: gold;
   font-size: 16px;
-  margin-bottom: 16px;
 }
 
 .gallery {
   display: flex;
   gap: 10px;
   overflow-x: auto;
-  margin-bottom: 20px;
+  margin: 16px 0;
 }
 
 .thumb {
@@ -90,6 +94,7 @@
   height: 100px;
   object-fit: cover;
   border-radius: 6px;
+  flex-shrink: 0;
 }
 
 .section {
@@ -121,13 +126,19 @@
 }
 
 .ask-btn {
-  background-color: #f06292;
-  color: white;
-  border: none;
+  background-color: #1e1e1e;
+  color: #9ecbff;
+  border: 1px solid #9ecbff;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.ask-btn:hover {
+  background-color: #2b2b2b;
 }
 
 .stock {
@@ -135,7 +146,7 @@
 }
 
 .buy-btn {
-  background: linear-gradient(to right, #a18cd1, #fbc2eb);
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
   border: none;
   color: black;
   font-weight: bold;
