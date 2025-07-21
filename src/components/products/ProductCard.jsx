@@ -15,12 +15,11 @@ const ProductCard = ({ product }) => {
           alt={product.name}
           className="product-card-image"
           loading="lazy"
-          style={{ width: "100%", height: "120px", objectFit: "cover" }}
         />
       </div>
       <div className="product-card-info">
         <h3 className="product-card-title">{product.name}</h3>
-        <span className="product-card-price">{product.price} ₽</span>
+        <div className="product-card-more">Подробнее</div>
       </div>
     </div>
   );
