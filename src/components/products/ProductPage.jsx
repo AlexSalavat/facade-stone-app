@@ -14,22 +14,28 @@ const ProductPage = () => {
 
   return (
     <div className="product-page">
-      <button className="back-button" onClick={() => navigate(-1)}>← Назад</button>
-      <h1>{product.name}</h1>
-      <div className="price">{product.price} ₽</div>
-
-      <div className="origin">
-        <span role="img" aria-label={product.country}>{product.country === "Корея" ? "🇰🇷" : ""}</span>
-        <span>{product.country}</span>
+      <div className="top-bar">
+        <button className="back-button" onClick={() => navigate(-1)}>← Назад</button>
       </div>
 
-      <div className="rating">{"⭐".repeat(Math.round(product.rating))} {product.rating}</div>
-
-      <img src={product.images[0]} alt={product.name} className="main-image" />
+      <div className="main-info">
+        <div className="main-image-wrapper">
+          <img src={product.images[0]} alt={product.name} className="main-image" />
+        </div>
+        <div className="product-details">
+          <h1>{product.name}</h1>
+          <div className="price">{product.price} ₽</div>
+          <div className="origin">
+            <span role="img" aria-label={product.country}>{product.country === "Корея" ? "🇰🇷" : ""}</span>
+            <span>{product.country}</span>
+          </div>
+          <div className="rating">{"⭐".repeat(Math.round(product.rating))} {product.rating}</div>
+        </div>
+      </div>
 
       <div className="gallery">
         {product.images.slice(1).map((img, idx) => (
-          <img key={idx} src={img} alt={`${product.name} ${idx + 2}`} />
+          <img key={idx} src={img} alt={`${product.name} ${idx + 2}`} className="thumb" />
         ))}
       </div>
 
