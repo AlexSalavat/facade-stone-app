@@ -1,0 +1,8 @@
+/* src/components/products/ProductsGrid.css */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
