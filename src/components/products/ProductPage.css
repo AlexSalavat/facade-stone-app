@@ -22,7 +22,7 @@
 .main-info {
   display: flex;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 16px;
 }
 
@@ -43,18 +43,19 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 6px;
 }
 
-.product-details h1 {
+.product-title {
   font-size: 18px;
-  margin: 0 0 8px;
+  font-weight: bold;
+  margin: 0;
 }
 
-.price {
-  color: #ff4081;
+.price-label {
+  color: #4caf50;
   font-weight: bold;
-  margin-bottom: 4px;
+  font-size: 16px;
 }
 
 .origin, .rating {
