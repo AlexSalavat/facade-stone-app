@@ -8,56 +8,59 @@
   margin: 0 auto;
 }
 
-.productpage-mainrow {
+.productpage-headerrow {
   display: flex;
   flex-direction: row;
-  gap: 18px;
-  align-items: flex-start;
-  margin: 10px 0 15px 0;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0 10px 0;
+  width: 100%;
 }
-.productpage-photo-col {
-  min-width: 108px;
-  max-width: 120px;
+.productpage-header-imgcol {
+  flex: 0 0 84px;
+  max-width: 84px;
 }
-.productpage-photo {
-  width: 100px;
-  height: 100px;
-  background: #181818;
-  border-radius: 18px;
+.productpage-header-photo {
+  width: 84px;
+  height: 84px;
+  border-radius: 14px;
   overflow: hidden;
-  cursor: pointer;
-  box-shadow: 0 2px 10px #10101040;
+  background: #1b1b1b;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 8px #18181860;
+  cursor: pointer;
 }
-.productpage-photo img {
+.productpage-header-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.productpage-info-col {
-  flex: 1;
+.productpage-header-infocol {
+  flex: 1 1 auto;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .productpage-title {
-  font-size: 1.23rem;
+  font-size: 1.13rem;
   font-weight: 600;
   margin: 0 0 8px 0;
   color: #fff;
 }
 .productpage-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 11px 13px;
+  gap: 10px 12px;
   align-items: center;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 500;
 }
 .productpage-price {
   color: #47e978;
   font-weight: 600;
-  font-size: 1.13rem;
+  font-size: 1.11rem;
   margin-right: 6px;
 }
 .productpage-country {
@@ -66,7 +69,24 @@
 .productpage-rating {
   color: #ffd444;
 }
+@media (max-width: 600px) {
+  .productpage-headerrow {
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+  .productpage-header-imgcol {
+    flex-basis: 66px;
+    max-width: 66px;
+  }
+  .productpage-header-photo {
+    width: 66px;
+    height: 66px;
+    border-radius: 10px;
+  }
+}
 
+/* Галерея */
 .productpage-gallery {
   display: flex;
   gap: 8px;
@@ -199,21 +219,4 @@
 .cart-btn:hover {
   background: #6dffb0;
   color: #143b23;
-}
-@media (max-width: 600px) {
-  .productpage-mainrow {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 11px;
-  }
-  .productpage-photo-col {
-    max-width: 100%;
-    min-width: 0;
-  }
-  .productpage-photo {
-    margin: 0 auto 7px auto;
-  }
-  .productpage-info-col {
-    min-width: 0;
-  }
 }

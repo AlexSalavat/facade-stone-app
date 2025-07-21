@@ -19,21 +19,29 @@ const ProductPage = () => {
     );
   }
 
+  // Парсим преимущества
+  let description = product.description || "";
+  let descMain = description;
+  let advantages = [];
+  if (description.includes("Преимущества")) {
+    descMain = description.split("Преимущества")[0].trim();
+    advantages = description.split("Преимущества:")[1]
+      ?.split('\n')
+      .filter(x => x && x.trim().length > 2 && !x.includes('Форма выпуска'))
+      .map(x => x.replace(/^[-–▪️•]+/, '').trim());
+  }
+
   return (
     <div className="productpage-root">
       <BackButton />
-      <div className="productpage-mainrow">
-        {/* Фото слева */}
-        <div className="productpage-photo-col">
-          <div
-            className="productpage-photo"
-            onClick={() => setShowFullImg(true)}
-          >
+      {/* Новый красивый блок — фото слева, инфо справа */}
+      <div className="productpage-headerrow">
+        <div className="productpage-header-imgcol">
+          <div className="productpage-header-photo" onClick={() => setShowFullImg(true)}>
             <img src={activeImg} alt={product.name} />
           </div>
         </div>
-        {/* Инфо справа */}
-        <div className="productpage-info-col">
+        <div className="productpage-header-infocol">
           <h2 className="productpage-title">{product.name}</h2>
           <div className="productpage-meta">
             <span className="productpage-price">{product.price} ₽</span>
@@ -68,19 +76,15 @@ const ProductPage = () => {
       {/* Описание */}
       <div className="productpage-descblock">
         <div className="productpage-section-title">Про препарат</div>
-        <div className="productpage-desc">{(product.description || '').split('Преимущества')[0].trim()}</div>
+        <div className="productpage-desc">{descMain}</div>
       </div>
 
       {/* Преимущества */}
-      {product.description && product.description.includes('Преимущества') && (
+      {advantages.length > 0 && (
         <div className="productpage-descblock">
           <div className="productpage-section-title green">Преимущества</div>
           <ul className="productpage-advantages">
-            {product.description
-              .split('Преимущества:')[1]
-              ?.split('\n')
-              .filter(x => x && x.trim().length > 2 && !x.includes('Форма выпуска'))
-              .map((x, i) => <li key={i}>{x.replace(/^[-–▪️•]+/,'').trim()}</li>)}
+            {advantages.map((x, i) => <li key={i}>{x}</li>)}
           </ul>
         </div>
       )}
