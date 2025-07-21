@@ -1,89 +1,88 @@
-// src/components/products/ProductPage.jsx
+// src/pages/ProductPage.jsx
 
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { products } from "../../data/products";
+import { products } from "../data/products";
 import "./ProductPage.css";
 
-const ProductPage = () => {
-  const { productId } = useParams();
+export default function ProductPage() {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const product = products.find(p => p.id === productId);
-  const [modalImage, setModalImage] = useState(null);
+  const product = products.find((p) => p.id === id);
+  const [modalImg, setModalImg] = useState(null);
 
-  if (!product) return <div className="not-found">Товар не найден</div>;
+  if (!product) return <div>Товар не найден</div>;
 
   return (
-    <div className="product-page dark">
+    <div className="product-page">
       <div className="top-bar">
-        <button className="back-button" onClick={() => navigate(-1)}>← Назад</button>
+        <button className="back-button" onClick={() => navigate(-1)}>
+          Назад
+        </button>
       </div>
 
       <div className="main-info">
-        <div className="main-image-wrapper" onClick={() => setModalImage(product.images[0])}>
-          <img src={product.images[0]} alt={product.name} className="main-image clickable" />
+        <div className="main-image-wrapper" onClick={() => setModalImg(product.images[0])}>
+          <img src={product.images[0]} alt={product.name} className="main-image" />
         </div>
+
         <div className="product-details">
-          <h1 className="product-title">{product.name}</h1>
-          <div className="price-label green">{product.price} ₽</div>
+          <div className="product-title">{product.name}</div>
+          <div className="price-label">{product.price} ₽</div>
           <div className="origin">
-            <span role="img" aria-label={product.country}>{product.country === "Корея" ? "🇰🇷" : ""}</span>
-            <span>{product.country}</span>
+            🇰🇷 {product.country}
           </div>
-          <div className="rating">{"⭐".repeat(Math.round(product.rating))} {product.rating}</div>
+          <div className="rating">
+            {"\u2605".repeat(Math.floor(product.rating))} {product.rating.toFixed(1)}
+          </div>
         </div>
       </div>
 
       <div className="gallery">
-        {product.images.slice(1).map((img, idx) => (
+        {product.images.map((img, i) => (
           <img
-            key={idx}
+            key={i}
             src={img}
-            alt={`${product.name} ${idx + 2}`}
-            className="thumb clickable"
-            onClick={() => setModalImage(img)}
+            className="thumb"
+            onClick={() => setModalImg(img)}
+            alt=""
           />
         ))}
       </div>
 
-      <div className="section">
-        <p className="description">{product.description}</p>
-      </div>
+      <div className="section description">{product.long_desc}</div>
 
       <div className="section">
-        <h3>Преимущества</h3>
-        <ul>
-          {product.description
-            .split("\n")
-            .filter(l => l.trim().startsWith("-"))
-            .map((l, i) => <li key={i}>{l.replace(/^- /, "")}</li>)}
+        <h3>Преимущества:</h3>
+        <ul className="description">
+          {product.advantages.map((adv, i) => (
+            <li key={i}>{adv}</li>
+          ))}
         </ul>
       </div>
 
       <div className="section">
         <h3>Лучше всего сочетается с:</h3>
-        <p>{product.combo}</p>
+        <div className="description">{product.combo}</div>
       </div>
 
-      {product.pdf && (
-        <a href={product.pdf} target="_blank" rel="noopener noreferrer" className="pdf-link">
-          📄 PDF протокол
-        </a>
-      )}
+      <a href={product.pdf} className="pdf-link" target="_blank" rel="noopener noreferrer">
+        📄 PDF протокол
+      </a>
 
       <div className="actions">
         <button className="ask-btn">❓ Задать вопрос</button>
         <div className="stock">В наличии: {product.stock} шт.</div>
-        <button className="buy-btn">🛒 В корзину</button>
+        <button className="buy-btn">
+          🛒 В корзину
+        </button>
       </div>
 
-      {modalImage && (
-        <div className="modal" onClick={() => setModalImage(null)}>
-          <img src={modalImage} alt="modal" className="modal-img" />
+      {modalImg && (
+        <div className="modal" onClick={() => setModalImg(null)}>
+          <img src={modalImg} alt="" className="modal-img" />
         </div>
       )}
     </div>
   );
-};
-
-export default ProductPage;
+}
