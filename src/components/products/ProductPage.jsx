@@ -1,6 +1,6 @@
 // src/components/products/ProductPage.jsx
 
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../../data/products";
 import "./ProductPage.css";
@@ -9,18 +9,19 @@ const ProductPage = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const product = products.find(p => p.id === productId);
+  const [modalImage, setModalImage] = useState(null);
 
   if (!product) return <div className="not-found">Товар не найден</div>;
 
   return (
-    <div className="product-page">
+    <div className="product-page dark">
       <div className="top-bar">
         <button className="back-button" onClick={() => navigate(-1)}>← Назад</button>
       </div>
 
       <div className="main-info">
-        <div className="main-image-wrapper">
-          <img src={product.images[0]} alt={product.name} className="main-image" />
+        <div className="main-image-wrapper" onClick={() => setModalImage(product.images[0])}>
+          <img src={product.images[0]} alt={product.name} className="main-image clickable" />
         </div>
         <div className="product-details">
           <h1>{product.name}</h1>
@@ -35,7 +36,13 @@ const ProductPage = () => {
 
       <div className="gallery">
         {product.images.slice(1).map((img, idx) => (
-          <img key={idx} src={img} alt={`${product.name} ${idx + 2}`} className="thumb" />
+          <img
+            key={idx}
+            src={img}
+            alt={`${product.name} ${idx + 2}`}
+            className="thumb clickable"
+            onClick={() => setModalImage(img)}
+          />
         ))}
       </div>
 
@@ -70,6 +77,12 @@ const ProductPage = () => {
         <div className="stock">В наличии: {product.stock} шт.</div>
         <button className="buy-btn">🛒 В корзину</button>
       </div>
+
+      {modalImage && (
+        <div className="modal" onClick={() => setModalImage(null)}>
+          <img src={modalImage} alt="modal" className="modal-img" />
+        </div>
+      )}
     </div>
   );
 };
