@@ -1,118 +1,131 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import BackButton from '../BackButton';
-import { products } from '../../data/products';
-import '../../styles/ProductPage.css';
+// src/components/products/ProductPage.jsx
+
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import BackButton from "../BackButton";
+import { products } from "../../data/products";
+import "../../styles/ProductPage.css";
+
+const getProductComposition = (product) => {
+  // Можешь доработать парсинг или руками прописать для каждого продукта
+  if (product.id === "botulax-200")
+    return "Clostridium Botulinum Toxin Type A 200 units";
+  if (product.id === "hutox-100")
+    return "Ботулинический токсин типа A (Clostridium Botulinum Toxin Type A)";
+  if (product.id === "belleera-r15")
+    return "Гиалуроновая кислота, 3 мл";
+  if (product.id === "sosum-soft")
+    return "Гиалуроновая кислота (cross-linked), 3 мл";
+  if (product.id === "neuramis-deep")
+    return "Гиалуроновая кислота 20 мг/мл, лидокаин";
+  if (product.id === "kiara-reju")
+    return "PDRN, гиалуроновая кислота, коэнзимы";
+  return "";
+};
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const product = products.find(p => String(p.id) === String(productId));
-  const [fullImg, setFullImg] = useState(null);
+  const product = products.find((p) => String(p.id) === String(productId));
+  const [modalImg, setModalImg] = useState(null);
 
   if (!product) {
     return (
-      <div className="productpage-root">
+      <div className="product-page">
         <BackButton />
         <h2>Товар не найден</h2>
       </div>
     );
   }
 
-  // Парсим преимущества
-  let descMain = product.description;
-  let advantages = [];
-  if (product.description?.includes("Преимущества:")) {
-    const [main, adv] = product.description.split("Преимущества:");
-    descMain = main.trim();
-    advantages = adv
-      .split('\n')
-      .map(x => x.replace(/^[-–▪️•]+/, '').trim())
-      .filter(x => x.length > 1);
-  }
-
-  // Парсим состав
-  let composition = product.composition;
-  if (!composition) {
-    if (product.category === "botox") composition = "Ботулинический токсин типа A (Clostridium Botulinum Toxin Type A)";
-    else if (product.category === "fillers") composition = "Стабилизированная гиалуроновая кислота, лидокаин";
-    else if (product.category === "biorevitalization") composition = "Гиалуроновая кислота, пептиды, коэнзимы";
-    else composition = "Активные компоненты согласно спецификации препарата";
-  }
-
   return (
-    <div className="productpage-root">
+    <div className="product-page">
       <BackButton />
 
-      <div className="productpage-mainrow">
-        <div className="productpage-imgcol">
-          <img src={product.images[0]} alt={product.name} className="productpage-mainimg2" />
+      <div className="product-main-info">
+        <div className="product-main-img-block">
+          <img
+            src={product.images[0]}
+            alt={product.name}
+            className="product-main-img"
+          />
         </div>
-        <div className="productpage-infocol">
-          <div className="productpage-title2">{product.name}</div>
-          <div className="productpage-price2">{product.price} ₽</div>
-          <div className="productpage-country2">🇰🇷 {product.country}</div>
-          <div className="productpage-rating2">★ {product.rating}</div>
+        <div className="product-main-text">
+          <div className="product-title">{product.name}</div>
+          <div className="product-price">{product.price} ₽</div>
+          <div className="product-meta">
+            <span className="product-country">🇰🇷 Корея</span>
+            <span className="product-rating">★ {product.rating}</span>
+          </div>
         </div>
       </div>
 
-      {/* Галерея мини-фото */}
-      {product.images.length > 1 && (
-        <div className="productpage-gallery">
-          {product.images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt=""
-              className="productpage-gallery-img"
-              onClick={() => setFullImg(img)}
-            />
-          ))}
-        </div>
-      )}
-      {fullImg && (
-        <div className="productpage-fullimg-modal" onClick={() => setFullImg(null)}>
-          <img src={fullImg} alt="gallery" />
-        </div>
-      )}
-
-      {/* Описание */}
-      <div className="productpage-section">
-        <div className="productpage-section-title">О препарате</div>
-        <div className="productpage-desc">{descMain}</div>
+      <div className="product-gallery-thumbs">
+        {product.images.map((img, idx) => (
+          <img
+            key={idx}
+            src={img}
+            alt={`${product.name} thumb-${idx}`}
+            className="product-thumb-img"
+            onClick={() => setModalImg(img)}
+          />
+        ))}
       </div>
 
-      {/* Состав */}
-      <div className="productpage-section">
-        <div className="productpage-section-title blue">Состав</div>
-        <div className="productpage-composition">{composition}</div>
+      {/* Модальное окно для большого фото */}
+      {modalImg && (
+        <div className="product-modal" onClick={() => setModalImg(null)}>
+          <img src={modalImg} alt="big" className="product-modal-img" />
+        </div>
+      )}
+
+      <div className="section">
+        <div className="section-title about">О препарате</div>
+        <div className="section-desc">{product.description?.split("Преимущества:")[0]?.trim()}</div>
+      </div>
+
+      <div className="section">
+        <div className="section-title composition">Состав</div>
+        <div className="section-desc italic">{getProductComposition(product)}</div>
       </div>
 
       {/* Преимущества */}
-      {advantages.length > 0 && (
-        <div className="productpage-section">
-          <div className="productpage-section-title green">Преимущества</div>
-          <ul className="productpage-advantages">
-            {advantages.map((x, i) => <li key={i}>{x}</li>)}
+      {product.description?.includes("Преимущества:") && (
+        <div className="section">
+          <div className="section-title advantages">Преимущества</div>
+          <ul className="advantages-list">
+            {product.description
+              .split("Преимущества:")[1]
+              .split("\n")
+              .map((adv, i) => adv.trim())
+              .filter(Boolean)
+              .map((adv, idx) => (
+                <li key={idx}>{adv.replace(/^[-–▪️•]+/g, "")}</li>
+              ))}
           </ul>
         </div>
       )}
 
-      {/* Сочетаемость */}
+      {/* Сочетается с */}
       {product.combo && (
-        <div className="productpage-section">
-          <div className="productpage-section-title blue">Лучше всего сочетается с:</div>
-          <div className="productpage-combo">{product.combo}</div>
+        <div className="section">
+          <div className="section-title combo">Лучше всего сочетается с:</div>
+          <div className="section-desc">{product.combo}</div>
         </div>
       )}
 
-      {/* PDF и кнопки */}
-      <div className="productpage-btns">
+      {/* PDF + кнопки */}
+      <div className="product-btns-row">
         {product.pdf && (
-          <a href={product.pdf} className="productpage-pdf" target="_blank" rel="noopener noreferrer">
-            📄 Открыть протокол препарата (PDF)
+          <a
+            className="product-pdf-link"
+            href={product.pdf}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            📄 Открыть PDF
           </a>
         )}
-        <button className="btn ask-btn" onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}>Задать вопрос</button>
+        <button className="btn ask-btn">Задать вопрос</button>
         <button className="btn cart-btn">В корзину</button>
       </div>
     </div>
