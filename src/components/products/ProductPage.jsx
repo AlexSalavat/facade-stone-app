@@ -19,7 +19,7 @@ const ProductPage = () => {
     );
   }
 
-  // Преимущества
+  // --- описание/преимущества парсинг ---
   let description = product.description || "";
   let descMain = description;
   let advantages = [];
@@ -35,20 +35,17 @@ const ProductPage = () => {
     <div className="productpage-root">
       <BackButton />
 
-      <div className="productpage-headerrow bigphoto">
-        <div className="productpage-header-imgcol big">
-          <div className="productpage-header-photo big">
-            <img src={product.images[0]} alt={product.name} />
-          </div>
+      {/* Шапка с фото и текстом */}
+      <div className="productpage-cardrow">
+        <div className="productpage-imgblock">
+          <img src={product.images[0]} alt={product.name} />
         </div>
-        <div className="productpage-header-infocol tight">
+        <div className="productpage-infoblock">
           <div className="productpage-title">{product.name}</div>
           <div className="productpage-price">{product.price} ₽</div>
           <div className="productpage-country">🇰🇷 {product.country}</div>
-          <div className="productpage-rating">
-            <span className="productpage-stars">
-              {'★'.repeat(Math.round(product.rating))}
-            </span>
+          <div className="productpage-ratingrow">
+            <span className="productpage-star">★</span>
             <span className="productpage-ratingnum">{product.rating}</span>
           </div>
         </div>
@@ -79,13 +76,11 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* Описание */}
+      {/* Описание, преимущества и т.д. */}
       <div className="productpage-descblock">
         <div className="productpage-section-title">О препарате</div>
         <div className="productpage-desc">{descMain}</div>
       </div>
-
-      {/* Преимущества */}
       {advantages.length > 0 && (
         <div className="productpage-descblock">
           <div className="productpage-section-title green">Преимущества</div>
@@ -94,8 +89,6 @@ const ProductPage = () => {
           </ul>
         </div>
       )}
-
-      {/* Сочетается с */}
       {product.combo && (
         <div className="productpage-descblock">
           <div className="productpage-section-title blue">Лучше всего сочетается с:</div>
