@@ -1,6 +1,7 @@
 // src/App.jsx
 
 import React from "react";
+import "./styles/Global.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import CategoryView from "./components/categories/CategoryView";

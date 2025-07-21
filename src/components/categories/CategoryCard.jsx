@@ -1,8 +1,7 @@
 // src/components/categories/CategoryCard.jsx
-
 import React from "react";
 import { Link } from "react-router-dom";
-import "./CategoryCard.css";
+import "../../styles/CategoryCard.css";
 
 const CategoryCard = ({ name, image, to }) => {
   return (

@@ -1,11 +1,11 @@
-// src/components/categories/CategoryView.jsx
-
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { categories } from "../../data/categories";
-import ProductsGrid from "../products/ProductsGrid"; // Исправленный импорт
+import { products } from "../../data/products";
+import ProductsGrid from "../products/ProductsGrid";
 import CategoryCard from "./CategoryCard";
-import "./CategoryView.css";
+import BackButton from "../shared/BackButton";
+import "../../styles/CategoryView.css";
 
 const CategoryView = () => {
   const { category } = useParams();
@@ -25,14 +25,15 @@ const CategoryView = () => {
   }
 
   const selected = categories.find(c => c.key === category);
+  const filteredProducts = products.filter(p => p.category === category);
 
   return (
     <div className="category-view">
       <div className="top-bar">
-        <button className="back-button" onClick={() => navigate("/catalog")}>← Назад</button>
+        <BackButton onClick={() => navigate("/catalog")} />
       </div>
       <h2>{selected?.name}</h2>
-      <ProductsGrid />
+      <ProductsGrid products={filteredProducts} />
     </div>
   );
 };

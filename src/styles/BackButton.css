@@ -1,0 +1,26 @@
+/* styles/BackButton.css */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 11px 6px 6px;
+  border-radius: 12px;
+  transition: background 0.14s;
+  margin-bottom: 10px;
+}
+
+.back-btn:hover {
+  background: #23272F;
+}
+
+.back-arrow {
+  font-size: 1.3em;
+  color: #19C37D;
+  line-height: 0;
+}
