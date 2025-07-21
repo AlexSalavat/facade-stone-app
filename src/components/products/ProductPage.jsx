@@ -25,7 +25,7 @@ const ProductPage = () => {
         </div>
         <div className="product-details">
           <h1>{product.name}</h1>
-          <div className="price">{product.price} ₽</div>
+          <div className="price green">{product.price} ₽</div>
           <div className="origin">
             <span role="img" aria-label={product.country}>{product.country === "Корея" ? "🇰🇷" : ""}</span>
             <span>{product.country}</span>
