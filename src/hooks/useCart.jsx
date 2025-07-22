@@ -10,15 +10,16 @@ export function useCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item) => {
+  // Теперь qty можно указать
+  const addToCart = (item, qty = 1) => {
     setCart(prev => {
       const exist = prev.find(p => p.id === item.id);
       if (exist) {
         return prev.map(p =>
-          p.id === item.id ? { ...p, qty: p.qty + 1 } : p
+          p.id === item.id ? { ...p, qty: p.qty + qty } : p
         );
       }
-      return [...prev, { ...item, qty: 1 }];
+      return [...prev, { ...item, qty }];
     });
   };
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BackButton from '../BackButton';
 import { products } from '../../data/products';
+import CartModal from '../CartModal'; // Новый импорт
 import '../../styles/ProductPage.css';
 
 const flagKR = "🇰🇷";
@@ -10,6 +11,11 @@ const ProductPage = () => {
   const { productId } = useParams();
   const product = products.find(p => String(p.id) === String(productId));
   const [modalImg, setModalImg] = useState(null);
+
+  // Состояние для модального окна корзины
+  const [showCartModal, setShowCartModal] = useState(false);
+
+  const handleAddToCart = () => setShowCartModal(true);
 
   if (!product) {
     return (
@@ -137,8 +143,16 @@ const ProductPage = () => {
         </button>
       </div>
       <div className="product-buttons-row cart-row">
-        <button className="btn cart-btn">В корзину</button>
+        <button className="btn cart-btn" onClick={handleAddToCart}>
+          В корзину
+        </button>
       </div>
+      {showCartModal && (
+        <CartModal
+          product={product}
+          onClose={() => setShowCartModal(false)}
+        />
+      )}
     </div>
   );
 };
