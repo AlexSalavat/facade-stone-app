@@ -5,8 +5,14 @@ import "../styles/BackButton.css";
 const BackButton = ({ to = -1, label = "Назад", className = "" }) => {
   const navigate = useNavigate();
   return (
-    <button className={`back-btn ${className}`} onClick={() => navigate(to)}>
-      <span className="back-arrow">←</span> {label}
+    <button
+      className={`back-btn ${className}`}
+      onClick={() => navigate(to)}
+      tabIndex={0}
+      type="button"
+    >
+      <span className="back-arrow">←</span>
+      {label}
     </button>
   );
 };

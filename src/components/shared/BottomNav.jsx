@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import '../../styles/BottomNav.css';
+import "../../styles/BottomNav.css";
 
 const navItems = [
   { label: "Каталог", path: "/catalog" },
@@ -20,6 +20,8 @@ const BottomNav = () => {
           key={item.path}
           onClick={() => navigate(item.path)}
           className={location.pathname.startsWith(item.path) ? "active" : ""}
+          type="button"
+          tabIndex={0}
         >
           {item.label}
         </button>
