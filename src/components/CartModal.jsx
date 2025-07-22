@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useCartCtx } from "../context/CartContext";
 import "../styles/CartModal.css";
 
-// Чистые стрелочки (SVG, без обводки)
 const IconMinus = () => (
   <svg width="18" height="18" viewBox="0 0 18 18">
     <rect x="4" y="8.1" width="10" height="1.8" rx="0.9" fill="#2be6a0"/>
@@ -21,7 +20,6 @@ export default function CartModal({ open = true, onClose, product }) {
   if (!open && !product) return null;
   const total = cart.reduce((sum, p) => sum + p.price * p.qty, 0);
 
-  // Стиль для стрелок
   const arrowBtn = {
     background: "#23272b", border: "none", borderRadius: 7,
     padding: "7px 7px", cursor: "pointer", margin: "0 2px", display: "flex", alignItems: "center"
