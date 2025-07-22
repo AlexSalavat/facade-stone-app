@@ -1,29 +1,32 @@
 .bottom-nav {
   position: fixed;
-  bottom: 0;
+  bottom: 7px; /* Чуть выше края экрана! */
   left: 0;
   right: 0;
-  height: 54px;
-  background: #191b1e;
+  height: 44px;
+  background: #181b20;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top: 1.5px solid #23272b;
   z-index: 12;
+  border-radius: 16px 16px 0 0;
+  margin: 0 7px;
+  box-shadow: 0 2px 18px #0b0e155a;
 }
 .bottom-nav button {
   background: none;
   border: none;
   color: #aee3ff;
-  font-size: 1.11rem;
+  font-size: 1.07rem;
   font-weight: 600;
-  padding: 7px 10px;
-  border-radius: 8px;
+  padding: 5px 7px;
+  border-radius: 6px;
   cursor: pointer;
-  margin: 0 3px;
-  transition: color 0.13s;
+  margin: 0 1px;
+  transition: color 0.12s;
   user-select: none;
-  min-width: 74px;
+  min-width: 64px;
 }
 .bottom-nav button.active,
 .bottom-nav button:active {
