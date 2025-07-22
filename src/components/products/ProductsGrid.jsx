@@ -1,11 +1,14 @@
+// src/components/products/ProductsGrid.jsx
+
 import React, { useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../../data/products";
 import ProductCard from './ProductCard';
+import BackButton from '../BackButton';
 import '../../styles/ProductsGrid.css';
 
 const PRODUCTS_PER_PAGE = 10;
-const PAGE_COUNT = 2; // две страницы (можно сделать вычисляемым)
+const PAGE_COUNT = 2;
 
 function getCardsToRender(products, page) {
   const fullProducts = [...products];
@@ -18,6 +21,7 @@ function getCardsToRender(products, page) {
 
 const ProductsGrid = () => {
   const { category } = useParams();
+  const navigate = useNavigate();
   const filteredProducts = products.filter(p => p.category === category);
 
   const [page, setPage] = useState(1);
@@ -25,12 +29,15 @@ const ProductsGrid = () => {
 
   return (
     <div>
+      <div style={{ marginBottom: "8px" }}>
+        <BackButton to="/catalog" />
+      </div>
       <div className="products-grid">
         {cardsToRender.map((product, idx) => (
           <ProductCard key={product.id || idx} product={product} />
         ))}
       </div>
-      <div className="pagination">
+      <div className="pagination pagination-center">
         <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
           &lt;
         </button>

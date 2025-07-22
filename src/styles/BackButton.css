@@ -1,26 +1,24 @@
-/* styles/BackButton.css */
 .back-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 4px;
   background: none;
-  border: none;
   color: #fff;
-  font-size: 1rem;
+  border: none;
+  font-size: 1.02rem;
   font-weight: 600;
+  padding: 6px 0 7px 0;
   cursor: pointer;
-  padding: 6px 11px 6px 6px;
-  border-radius: 12px;
-  transition: background 0.14s;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+  margin-left: -6px;
+  transition: color 0.14s;
 }
-
-.back-btn:hover {
-  background: #23272F;
+.back-btn:active {
+  color: #47ffab;
 }
-
 .back-arrow {
-  font-size: 1.3em;
-  color: #19C37D;
-  line-height: 0;
+  font-size: 1.22em;
+  margin-right: 4px;
+  display: inline-block;
+  font-weight: 700;
 }

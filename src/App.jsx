@@ -8,8 +8,8 @@ import CategoryView from "./components/categories/CategoryView";
 import ProductsGrid from "./components/products/ProductsGrid";
 import ProductPage from "./components/products/ProductPage";
 import BottomNav from "./components/shared/BottomNav";
-import NewsList from "./components/news/NewsList";
-import UsefulList from "./components/useful/UsefulList";
+import NewsGrid from "./components/news/NewsGrid";
+import UsefulGrid from "./components/useful/UsefulGrid";
 
 const App = () => {
   return (
@@ -19,8 +19,8 @@ const App = () => {
         <Route path="/catalog" element={<CategoryView />} />
         <Route path="/category/:category" element={<ProductsGrid />} />
         <Route path="/product/:productId" element={<ProductPage />} />
-        <Route path="/news" element={<NewsList />} />
-        <Route path="/useful" element={<UsefulList />} />
+        <Route path="/news" element={<NewsGrid />} />
+        <Route path="/useful" element={<UsefulGrid />} />
       </Routes>
       <BottomNav />
     </Router>
