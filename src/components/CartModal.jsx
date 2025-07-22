@@ -2,43 +2,48 @@ import React, { useState } from "react";
 import { useCartCtx } from "../context/CartContext";
 import "../styles/CartModal.css";
 
+// SVG стрелочки (без иконок — всегда рендерится!)
+const ArrowLeft = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22">
+    <circle cx="11" cy="11" r="11" fill="#1be88c" />
+    <path d="M13.8 16l-4-4 4-4" stroke="#191b1e" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const ArrowRight = () => (
+  <svg width="22" height="22" viewBox="0 0 22 22">
+    <circle cx="11" cy="11" r="11" fill="#1be88c" />
+    <path d="M8.2 6l4 4-4 4" stroke="#191b1e" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
 export default function CartModal({ open = true, onClose, product }) {
   const { cart, addToCart, removeFromCart, updateQty, clearCart } = useCartCtx();
   const [qty, setQty] = useState(1);
-
   if (!open && !product) return null;
   const total = cart.reduce((sum, p) => sum + p.price * p.qty, 0);
 
-  // Новый способ выбора количества: кнопки + и -
   const qtySelector = (
-    <div style={{ display: "flex", alignItems: "center", gap: 14, justifyContent: "center", margin: "20px 0" }}>
+    <div style={{
+      display: "flex", alignItems: "center", gap: 18,
+      justifyContent: "center", margin: "10px 0 18px"
+    }}>
       <button
         onClick={() => setQty(Math.max(1, qty - 1))}
         style={{
-          fontSize: 28,
-          width: 42,
-          height: 42,
-          borderRadius: "50%",
-          background: "#1be88c",
-          color: "#191b1e",
-          border: "none",
-          cursor: "pointer"
+          background: "none", border: "none", padding: 0, cursor: "pointer"
         }}
-      >-</button>
-      <span style={{ fontSize: 24, minWidth: 42, textAlign: "center" }}>{qty}</span>
+        aria-label="Уменьшить"
+      ><ArrowLeft /></button>
+      <span style={{
+        fontSize: 20, minWidth: 32, textAlign: "center", fontWeight: 600, color: "#fff"
+      }}>{qty}</span>
       <button
         onClick={() => setQty(qty + 1)}
         style={{
-          fontSize: 28,
-          width: 42,
-          height: 42,
-          borderRadius: "50%",
-          background: "#1be88c",
-          color: "#191b1e",
-          border: "none",
-          cursor: "pointer"
+          background: "none", border: "none", padding: 0, cursor: "pointer"
         }}
-      >+</button>
+        aria-label="Увеличить"
+      ><ArrowRight /></button>
     </div>
   );
 
@@ -53,22 +58,36 @@ export default function CartModal({ open = true, onClose, product }) {
       <div className="cart-modal" onClick={e => e.stopPropagation()}>
         <button className="close-modal" onClick={onClose}>✕</button>
         {product ? (
-          <>
-            <div className="cart-modal-title">Добавить в корзину</div>
-            <div style={{ textAlign: "center", margin: 20 }}>
-              <img src={product.images[0]} alt={product.name} style={{ width: 120, borderRadius: 12, marginBottom: 16 }} />
-              <div style={{ fontWeight: 600, marginBottom: 6 }}>{product.name}</div>
-              <div style={{ color: "#444", marginBottom: 12 }}>{product.price} ₽</div>
-              <label>
-                Количество: {qtySelector}
-              </label>
-              <div>
-                <button className="checkout-btn" style={{ marginTop: 18 }} onClick={handleAdd}>
-                  Добавить в корзину
-                </button>
-              </div>
+          <div style={{ maxWidth: 340, margin: "auto", padding: 0 }}>
+            <div className="cart-modal-title" style={{ marginBottom: 10, fontSize: 20, fontWeight: 700 }}>
+              Добавить в корзину
             </div>
-          </>
+            <img src={product.images[0]} alt={product.name}
+              style={{
+                width: 110, height: 110, borderRadius: 14,
+                display: "block", margin: "0 auto 11px auto", objectFit: "cover", background: "#151821"
+              }}
+            />
+            <div style={{ fontWeight: 600, marginBottom: 3, fontSize: 17, textAlign: "center", color: "#fff" }}>
+              {product.name}
+            </div>
+            <div style={{ color: "#8ef9cb", marginBottom: 6, textAlign: "center", fontWeight: 500 }}>
+              {product.price} ₽
+            </div>
+            <div style={{ fontSize: 16, color: "#eee", margin: "7px 0 5px" }}>Количество:</div>
+            {qtySelector}
+            <button
+              className="checkout-btn"
+              style={{
+                marginTop: 12, width: "100%", fontSize: 17,
+                padding: "12px 0", borderRadius: 11, background: "#1be88c",
+                color: "#191b1e", fontWeight: 700
+              }}
+              onClick={handleAdd}
+            >
+              Добавить в корзину
+            </button>
+          </div>
         ) : (
           <>
             <div className="cart-modal-title">Корзина</div>
