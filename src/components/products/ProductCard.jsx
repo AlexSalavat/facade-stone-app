@@ -5,12 +5,11 @@ import '../../styles/ProductCard.css';
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
-  // Placeholder card
   if (product.placeholder) {
     return (
       <div className="product-card placeholder-card">
-        <div className="placeholder-content">
-          <span>Новинка<br />в пути</span>
+        <div className="product-card-info">
+          <span className="product-card-title">Новинка в пути</span>
         </div>
       </div>
     );
@@ -18,15 +17,17 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
-      <img
-        src={product.images?.[0]}
-        alt={product.name}
-        className="product-card-img"
-        draggable={false}
-      />
+      <div className="product-card-image-wrap">
+        <img
+          src={product.images?.[0]}
+          alt={product.name}
+          className="product-card-image"
+          loading="lazy"
+        />
+      </div>
       <div className="product-card-info">
-        <div className="product-card-title">{product.name}</div>
-        <div className="product-card-link">Подробнее</div>
+        <h3 className="product-card-title">{product.name}</h3>
+        <span className="product-card-more">Подробнее</span>
       </div>
     </div>
   );

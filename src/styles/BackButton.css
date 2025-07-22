@@ -9,7 +9,8 @@
   font-weight: 600;
   padding: 6px 0 7px 0;
   cursor: pointer;
-  margin-bottom: 4px;
+  margin-top: 12px;   /* Добавлен верхний отступ! */
+  margin-bottom: 6px; /* Чуть увеличил нижний */
   margin-left: -6px;
   transition: color 0.14s;
 }
