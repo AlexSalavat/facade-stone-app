@@ -1,25 +1,44 @@
-// src/data/useful.js
 export const useful = [
   {
-    id: 1,
-    title: "Протокол: Инъекции Belleera R15",
-    type: "protocol",
-    content: "PDF-протокол и видео для работы с новым филлером Belleera R15.",
-    file: "/pdf/belleera-r15-protocol.pdf"
+    key: 'pro-education',
+    title: 'PRO-Обучение: только топовые темы и практические разборы',
+    content: 'Практический рост, тренды, реальные кейсы из практики.',
+    image: '/images/useful/placeholder.jpg',
+    file: '/files/useful/placeholder.pdf',
   },
   {
-    id: 2,
-    title: "Сравнение ботулотоксинов",
-    type: "comparison",
-    content: "Таблица отличий популярных препаратов. Когда что использовать.",
-    file: "/pdf/botox-comparison.pdf"
+    key: 'pro-opinion',
+    title: 'PRO-Мнение лидеров: практика и инсайты успешных косметологов',
+    content: 'Реальные советы, опыт, лайфхаки и мнение от лучших практиков рынка.',
+    image: '/images/useful/placeholder.jpg',
+    file: '/files/useful/placeholder.pdf',
   },
   {
-    id: 3,
-    title: "Ответы на вопросы: как подбирать иглу",
-    type: "faq",
-    content: "Частые вопросы про подбор игл для разных процедур.",
-    file: "/pdf/needle-faq.pdf"
+    key: 'legal',
+    title: 'Юридическая грамотность: законы, правила и безопасность в практике косметолога',
+    content: 'Всё, что важно знать про законы, правила, договоры и безопасность для работы без рисков.',
+    image: '/images/useful/placeholder.jpg',
+    file: '/files/useful/placeholder.pdf',
   },
-  // Добавляй новые полезняшки по аналогии!
+  {
+    key: 'brand-marketing',
+    title: 'Личный бренд и маркетинг для косметолога',
+    content: 'Инструменты для продвижения в соцсетях, наращивания клиентской базы и развития репутации.',
+    image: '/images/useful/placeholder.jpg',
+    file: '/files/useful/placeholder.pdf',
+  },
+  {
+    key: 'insights',
+    title: 'Быстрые инсайты: секретные протоколы и инъекционные лайфхаки от экспертов',
+    content: 'Уникальные советы, алгоритмы и протоколы от ведущих специалистов.',
+    image: '/images/useful/placeholder.jpg',
+    file: '/files/useful/placeholder.pdf',
+  },
+  {
+    key: 'ready-solutions',
+    title: 'Готовые решения: всё для эффективной работы и заботы о клиенте',
+    content: 'Готовые шаблоны, памятки, чек-листы и алгоритмы для реальной практики.',
+    image: '/images/useful/placeholder.jpg',
+    file: '/files/useful/placeholder.pdf',
+  },
 ];

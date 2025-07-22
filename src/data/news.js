@@ -1,13 +1,44 @@
-// src/data/news.js
 export const news = [
   {
-    id: 1,
-    title: "Новинка: Belleera R15 теперь в наличии!",
-    date: "2025-07-24",
-    type: "catalog",
-    content: "В каталоге появился новый препарат для армирования — Belleera R15. Крупный объём, стойкий результат, подробности внутри.",
-    link: "/product/belleera-r15",
-    image: "/images/products/belleera-r15-1.webp", // путь до картинки
+    key: 'standards-trends',
+    title: 'Новые стандарты и тренды инъекционной косметологии',
+    content: 'Глобальные изменения, ключевые тенденции рынка, регуляции, мировые тренды.',
+    image: '/images/news/placeholder.jpg',
+    link: '/news/standards-trends',
   },
-  // Можешь добавить другие новости в будущем по аналогии
+  {
+    key: 'assortment-upgrade',
+    title: 'Апгрейд ассортимента: новые препараты и эксклюзивные поступления',
+    content: 'Свежие препараты, новые линейки, эксклюзивные продукты.',
+    image: '/images/news/placeholder.jpg',
+    link: '/news/assortment-upgrade',
+  },
+  {
+    key: 'events',
+    title: 'События и мероприятия: форумы, выставки, премии, конференции',
+    content: 'Анонсы и итоги главных событий рынка, обучающие съезды, профильные конференции.',
+    image: '/images/news/placeholder.jpg',
+    link: '/news/events',
+  },
+  {
+    key: 'revolution',
+    title: 'Революция препаратов: новые формулы, next gen технологии и биостимуляторы',
+    content: 'Инновационные препараты, коллагеновые бустеры, экзосомы, новейшие филлеры.',
+    image: '/images/news/placeholder.jpg',
+    link: '/news/revolution',
+  },
+  {
+    key: 'international',
+    title: 'Международный обмен: мировые тренды и “экспортные” методики',
+    content: 'Инсайты с зарубежных форумов, кейсы интеграции новых технологий из США, Кореи, Европы.',
+    image: '/images/news/placeholder.jpg',
+    link: '/news/international',
+  },
+  {
+    key: 'eco-genetics',
+    title: 'Эко-генетика красоты: персонализированные и устойчивые инъекционные решения',
+    content: 'Персонализированные подходы и устойчивые практики в современной инъекционной косметологии.',
+    image: '/images/news/placeholder.jpg',
+    link: '/news/eco-genetics',
+  },
 ];
