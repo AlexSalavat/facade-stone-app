@@ -1,7 +1,7 @@
 // src/components/news/NewsList.jsx
 import React from "react";
 import { news } from "../../data/news";
-import "./NewsList.css"; // для стилей, создадим ниже
+import "../../styles/NewsList.css"; // для стилей, создадим ниже
 import { useNavigate } from "react-router-dom";
 
 const NewsList = () => {
