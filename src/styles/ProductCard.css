@@ -5,13 +5,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 138px;
+  min-height: 124px;
   min-width: 0;
   cursor: pointer;
   border: 2px solid transparent;
   transition: box-shadow 0.15s, border 0.13s;
   position: relative;
+  padding: 0;
 }
 
 .product-card:hover {
@@ -26,8 +26,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 13px 13px 0 0;
-  margin-bottom: 2px;
+  border-radius: 14px 14px 0 0;
+  margin-bottom: 0;
 }
 
 .product-card-image {
@@ -40,27 +40,40 @@
 .product-card-info {
   text-align: center;
   width: 100%;
-  padding: 0;
-  margin: 0;
+  padding: 4px 2px 5px 2px;
 }
 
 .product-card-title {
   color: #fff;
-  font-size: 1rem;
-  margin: 4px 0 2px 0;
+  font-size: 0.93rem;
+  margin: 2px 0 0 0;
   font-weight: 600;
-  line-height: 1.13;
+  line-height: 1.09;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-card-more {
   color: #1be88c;
-  font-size: 0.97rem;
+  font-size: 0.92rem;
   font-weight: 500;
+  margin-top: 1px;
 }
 
 .placeholder-card {
-  opacity: 0.54;
+  opacity: 0.48;
   border-style: dashed;
   color: #8ff8dc;
   justify-content: center;
+}
+
+/* ГРИД ДЛЯ КАРТОЧЕК */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 8px;
+  margin-top: 3px;
+  padding: 0 3px;
 }
