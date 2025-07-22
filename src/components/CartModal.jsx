@@ -41,8 +41,11 @@ export default function CartModal({ open = true, onClose, product }) {
 
   return (
     <div className="cart-modal-bg" onClick={onClose}>
-      <div className="cart-modal" onClick={e => e.stopPropagation()} style={{ maxWidth: 350, minWidth: 0, padding: 0 }}>
-        <button className="close-modal" onClick={onClose}>✕</button>
+      <div
+        className="cart-modal"
+        onClick={e => e.stopPropagation()}
+        style={{ maxWidth: 350, minWidth: 0, padding: 0, position: "relative" }}
+      >
         {product ? (
           <div style={{ padding: "22px 16px 18px 16px" }}>
             <div className="cart-modal-title" style={{ marginBottom: 12, fontSize: 19, fontWeight: 700 }}>
@@ -76,7 +79,7 @@ export default function CartModal({ open = true, onClose, product }) {
           </div>
         ) : (
           <div style={{ padding: "20px 8px 18px 8px" }}>
-            <div className="cart-modal-title">Корзина</div>
+            <div className="cart-modal-title" style={{ marginBottom: 8 }}>Корзина</div>
             {cart.length === 0 ? (
               <div style={{ padding: 18, color: "#aaa", textAlign: "center" }}>Корзина пуста</div>
             ) : (

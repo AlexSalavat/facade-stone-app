@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import BackButton from '../BackButton';
 import { products } from '../../data/products';
-import CartModal from '../CartModal'; // Новый импорт
+import CartModal from '../CartModal';
 import '../../styles/ProductPage.css';
 
 const flagKR = "🇰🇷";
@@ -11,8 +11,6 @@ const ProductPage = () => {
   const { productId } = useParams();
   const product = products.find(p => String(p.id) === String(productId));
   const [modalImg, setModalImg] = useState(null);
-
-  // Состояние для модального окна корзины
   const [showCartModal, setShowCartModal] = useState(false);
 
   const handleAddToCart = () => setShowCartModal(true);
@@ -30,7 +28,6 @@ const ProductPage = () => {
   let description = product.description || "";
   let descMain = description;
   let advantages = [];
-
   if (description.includes("Преимущества:")) {
     const parts = description.split("Преимущества:");
     descMain = parts[0].trim();
@@ -123,25 +120,26 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* Кнопки */}
+      {/* Кнопки PDF/вопрос */}
       <div className="product-buttons-row">
         {product.pdf && (
           <a
             href={product.pdf}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn pdf-btn"
+            className="btn pdf-btn custom-btn"
           >
-            <span role="img" aria-label="pdf">📄</span> Открыть PDF
+            📄 Открыть PDF
           </a>
         )}
         <button
-          className="btn ask-btn"
+          className="btn ask-btn custom-btn"
           onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}
         >
-          Задать вопрос
+          💬 Задать вопрос
         </button>
       </div>
+      {/* Кнопка в корзину */}
       <div className="product-buttons-row cart-row">
         <button className="btn cart-btn" onClick={handleAddToCart}>
           В корзину
