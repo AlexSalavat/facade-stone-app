@@ -10,6 +10,7 @@ import ProductPage from "./components/products/ProductPage";
 import BottomNav from "./components/shared/BottomNav";
 import NewsGrid from "./components/news/NewsGrid";
 import UsefulGrid from "./components/useful/UsefulGrid";
+import CartPage from "./components/CartPage"; // Новый импорт!
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/news" element={<NewsGrid />} />
         <Route path="/useful" element={<UsefulGrid />} />
+        <Route path="/cart" element={<CartPage />} /> {/* Новый маршрут */}
       </Routes>
       <BottomNav />
     </Router>

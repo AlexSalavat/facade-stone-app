@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCartCtx } from "../context/CartContext";
-import "./CartModal.css";
+import "../styles/CartModal.css";
 
 export default function CartModal({ open = true, onClose, product }) {
   const { cart, addToCart, removeFromCart, updateQty, clearCart } = useCartCtx();

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCartCtx } from "../../context/CartContext";
 import "../../styles/BottomNav.css";
 
 const navItems = [
@@ -12,6 +13,8 @@ const navItems = [
 const BottomNav = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { cart } = useCartCtx();
+  const cartQty = cart.reduce((sum, item) => sum + item.qty, 0);
 
   return (
     <nav className="bottom-nav">
@@ -24,6 +27,9 @@ const BottomNav = () => {
           tabIndex={0}
         >
           {item.label}
+          {item.path === "/cart" && cartQty > 0 && (
+            <span className="cart-badge">{cartQty}</span>
+          )}
         </button>
       ))}
     </nav>
