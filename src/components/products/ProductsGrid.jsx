@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useParams } from "react-router-dom";
+import { products } from "../../data/products";
 import ProductCard from './ProductCard';
 import '../../styles/ProductsGrid.css';
 
 const PRODUCTS_PER_PAGE = 10;
-const PAGE_COUNT = 2; // всегда две страницы
+const PAGE_COUNT = 2; // две страницы (можно сделать вычисляемым)
 
 function getCardsToRender(products, page) {
-  // формируем массив на 20 карточек всегда (можно больше, если нужно)
   const fullProducts = [...products];
   while (fullProducts.length < PRODUCTS_PER_PAGE * PAGE_COUNT) {
     fullProducts.push({ id: `placeholder-${fullProducts.length}`, placeholder: true });
@@ -15,10 +16,12 @@ function getCardsToRender(products, page) {
   return fullProducts.slice(start, start + PRODUCTS_PER_PAGE);
 }
 
-const ProductsGrid = ({ products }) => {
-  const [page, setPage] = useState(1);
+const ProductsGrid = () => {
+  const { category } = useParams();
+  const filteredProducts = products.filter(p => p.category === category);
 
-  const cardsToRender = getCardsToRender(products, page);
+  const [page, setPage] = useState(1);
+  const cardsToRender = getCardsToRender(filteredProducts, page);
 
   return (
     <div>
