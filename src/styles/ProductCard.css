@@ -1,6 +1,6 @@
 .product-card {
   background: #232425;
-  border-radius: 12px;
+  border-radius: 11px;
   box-shadow: 0 2px 8px 0 rgba(24,24,30,0.10);
   overflow: hidden;
   cursor: pointer;
@@ -9,8 +9,8 @@
   align-items: stretch;
   transition: box-shadow .16s, border .15s;
   border: 2px solid transparent;
-  min-height: 145px;       /* Стало больше */
-  max-height: 170px;
+  min-height: 130px;
+  max-height: 150px;
   aspect-ratio: 1/1;
 }
 .product-card:hover {
@@ -20,51 +20,53 @@
 
 .product-card-img {
   width: 100%;
-  height: 78%;
+  height: 80%;
   object-fit: cover;
   background: #111;
-  border-radius: 10px 10px 0 0;
-  min-height: 88px;
-  max-height: 120px;
+  border-radius: 8px 8px 0 0;
+  min-height: 76px;
+  max-height: 108px;
   flex: 1 1 auto;
   aspect-ratio: 1/1;
 }
 
 .product-card-info {
-  padding: 4px 8px 8px 8px;
+  padding: 2px 4px 4px 4px;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   flex-grow: 0;
-  height: 22%;
+  height: 20%;
 }
 .product-card-title {
-  font-size: 1.05rem;        /* Крупнее! */
-  font-weight: 700;
+  font-size: 0.77rem;
+  font-weight: 600;
   color: #fff;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.1;
 }
 .product-card-link {
   color: #22e877;
   font-weight: 600;
-  font-size: 0.97rem;
+  font-size: 0.72rem;
   margin-top: 0;
+  line-height: 1.05;
 }
 
 /* Placeholder */
 .product-card.placeholder-card {
   background: #232425;
-  border-radius: 12px;
+  border-radius: 11px;
   box-shadow: 0 2px 8px 0 rgba(24,24,30,0.07);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 145px;
-  max-height: 170px;
+  min-height: 130px;
+  max-height: 150px;
   aspect-ratio: 1/1;
   border: 2px dashed #555;
   cursor: default;
@@ -73,14 +75,19 @@
 .placeholder-content {
   width: 100%;
   height: 100%;
-  min-height: 60px;
+  min-height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #aaa;
-  font-size: 0.91rem;
+  font-size: 0.71rem;
   font-weight: 500;
   text-align: center;
   letter-spacing: 0.01em;
   user-select: none;
+}
+
+/* Минимальные зазоры между карточками */
+.products-grid {
+  grid-gap: 5px !important;
 }
