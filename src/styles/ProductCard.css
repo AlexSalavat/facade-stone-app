@@ -1,6 +1,6 @@
 .product-card {
   background: #232425;
-  border-radius: 18px;
+  border-radius: 14px;
   box-shadow: 0 2px 12px 0 rgba(24,24,30,0.12);
   overflow: hidden;
   cursor: pointer;
@@ -9,7 +9,8 @@
   align-items: stretch;
   transition: box-shadow .16s, border .15s;
   border: 2px solid transparent;
-  min-height: 260px;
+  min-height: 185px; /* было 260px */
+  max-height: 210px;
 }
 .product-card:hover {
   box-shadow: 0 4px 18px 0 #11ebc590;
@@ -21,12 +22,14 @@
   aspect-ratio: 1/1;
   object-fit: cover;
   background: #111;
-  border-radius: 16px 16px 0 0;
+  border-radius: 12px 12px 0 0;
   margin-bottom: 0;
+  min-height: 94px;
+  max-height: 120px;
 }
 
 .product-card-info {
-  padding: 12px 10px 13px 10px;
+  padding: 7px 7px 9px 7px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -34,10 +37,10 @@
   flex-grow: 1;
 }
 .product-card-title {
-  font-size: 1.06rem;
+  font-size: 0.93rem;
   font-weight: 600;
   color: #fff;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -45,19 +48,20 @@
 .product-card-link {
   color: #22e877;
   font-weight: 600;
-  font-size: 1.07rem;
+  font-size: 0.99rem;
   margin-top: 0;
 }
 
-/* Стили для placeholder-заглушки */
+/* Placeholder */
 .product-card.placeholder-card {
   background: #232425;
-  border-radius: 18px;
+  border-radius: 14px;
   box-shadow: 0 2px 12px 0 rgba(24,24,30,0.07);
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 260px;
+  min-height: 185px;
+  max-height: 210px;
   border: 2px dashed #555;
   cursor: default;
   transition: none;
@@ -65,12 +69,12 @@
 .placeholder-content {
   width: 100%;
   height: 100%;
-  min-height: 140px;
+  min-height: 94px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #aaa;
-  font-size: 1.1rem;
+  font-size: 0.98rem;
   font-weight: 500;
   text-align: center;
   letter-spacing: 0.01em;
@@ -78,21 +82,21 @@
 }
 
 @media (max-width: 700px) {
-  .product-card {
-    min-height: 195px;
-    border-radius: 15px;
+  .product-card,
+  .product-card.placeholder-card {
+    min-height: 140px;
+    max-height: 170px;
+    border-radius: 10px;
   }
   .product-card-img {
-    border-radius: 12px 12px 0 0;
+    border-radius: 8px 8px 0 0;
+    min-height: 65px;
+    max-height: 80px;
   }
   .product-card-info {
-    padding: 9px 8px 10px 8px;
-  }
-  .product-card.placeholder-card {
-    min-height: 170px;
-    border-radius: 13px;
+    padding: 6px 6px 7px 6px;
   }
   .placeholder-content {
-    font-size: 1rem;
+    font-size: 0.93rem;
   }
 }

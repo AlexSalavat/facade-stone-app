@@ -3,26 +3,22 @@ import ProductCard from './ProductCard';
 import '../../styles/ProductsGrid.css';
 
 const PRODUCTS_PER_PAGE = 10;
+const PAGE_COUNT = 2; // всегда две страницы
 
-function getCardsToRender(products) {
-  const count = products.length;
-  const placeholders = Array.from({ length: Math.max(0, PRODUCTS_PER_PAGE - count) }, (_, i) => ({
-    id: `placeholder-${i}`,
-    placeholder: true,
-  }));
-  return [...products, ...placeholders];
+function getCardsToRender(products, page) {
+  // формируем массив на 20 карточек всегда (можно больше, если нужно)
+  const fullProducts = [...products];
+  while (fullProducts.length < PRODUCTS_PER_PAGE * PAGE_COUNT) {
+    fullProducts.push({ id: `placeholder-${fullProducts.length}`, placeholder: true });
+  }
+  const start = (page - 1) * PRODUCTS_PER_PAGE;
+  return fullProducts.slice(start, start + PRODUCTS_PER_PAGE);
 }
 
 const ProductsGrid = ({ products }) => {
   const [page, setPage] = useState(1);
-  const pageCount = Math.ceil(products.length / PRODUCTS_PER_PAGE);
 
-  const paginatedProducts = products.slice(
-    (page - 1) * PRODUCTS_PER_PAGE,
-    page * PRODUCTS_PER_PAGE
-  );
-
-  const cardsToRender = getCardsToRender(paginatedProducts);
+  const cardsToRender = getCardsToRender(products, page);
 
   return (
     <div>
@@ -31,25 +27,23 @@ const ProductsGrid = ({ products }) => {
           <ProductCard key={product.id || idx} product={product} />
         ))}
       </div>
-      {pageCount > 1 && (
-        <div className="pagination">
-          <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
-            &lt;
+      <div className="pagination">
+        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
+          &lt;
+        </button>
+        {[...Array(PAGE_COUNT)].map((_, idx) => (
+          <button
+            key={idx + 1}
+            onClick={() => setPage(idx + 1)}
+            className={page === idx + 1 ? 'active' : ''}
+          >
+            {idx + 1}
           </button>
-          {Array.from({ length: pageCount }, (_, idx) => (
-            <button
-              key={idx + 1}
-              onClick={() => setPage(idx + 1)}
-              className={page === idx + 1 ? 'active' : ''}
-            >
-              {idx + 1}
-            </button>
-          ))}
-          <button onClick={() => setPage(p => Math.min(pageCount, p + 1))} disabled={page === pageCount}>
-            &gt;
-          </button>
-        </div>
-      )}
+        ))}
+        <button onClick={() => setPage(p => Math.min(PAGE_COUNT, p + 1))} disabled={page === PAGE_COUNT}>
+          &gt;
+        </button>
+      </div>
     </div>
   );
 };
