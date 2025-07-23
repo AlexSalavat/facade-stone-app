@@ -1,15 +1,17 @@
+// src/components/categories/CategoryView.jsx
+
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { categories } from "../../data/categories";
 import ProductsGrid from "../products/ProductsGrid";
 import CategoryCard from "./CategoryCard";
-import BackButton from "../BackButton";
 import '../../styles/CategoryView.css';
 
 const CategoryView = () => {
   const { category } = useParams();
   const navigate = useNavigate();
 
+  // Если категория не выбрана — показываем все категории
   if (!category) {
     return (
       <div className="category-view">
@@ -28,16 +30,11 @@ const CategoryView = () => {
     );
   }
 
-  const selected = categories.find(c => c.key === category);
-
+  // Если категория выбрана — показываем товары (ProductsGrid сам покажет BackButton)
   return (
     <div className="category-view">
-      <div className="top-bar">
-        <BackButton onClick={() => navigate("/catalog")} />
-      </div>
-      <h2>{selected?.name}</h2>
-      {/* Передаём category как проп */}
-      <ProductsGrid category={category || undefined} />
+      <h2>{categories.find(c => c.key === category)?.name}</h2>
+      <ProductsGrid />
     </div>
   );
 };
