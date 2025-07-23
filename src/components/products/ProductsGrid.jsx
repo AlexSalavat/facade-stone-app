@@ -1,31 +1,37 @@
-// src/components/products/ProductsGrid.jsx
-
-import React, { useState } from 'react';
-import { useParams, useNavigate } from "react-router-dom";
-import { products } from "../../data/products";
+import React, { useEffect, useState } from 'react';
+import { supabase } from '../../supabaseClient';
 import ProductCard from './ProductCard';
 import BackButton from '../BackButton';
 import '../../styles/ProductsGrid.css';
 
 const PRODUCTS_PER_PAGE = 10;
-const PAGE_COUNT = 2;
 
-function getCardsToRender(products, page) {
-  const fullProducts = [...products];
-  while (fullProducts.length < PRODUCTS_PER_PAGE * PAGE_COUNT) {
-    fullProducts.push({ id: `placeholder-${fullProducts.length}`, placeholder: true });
-  }
-  const start = (page - 1) * PRODUCTS_PER_PAGE;
-  return fullProducts.slice(start, start + PRODUCTS_PER_PAGE);
-}
-
-const ProductsGrid = () => {
-  const { category } = useParams();
-  const navigate = useNavigate();
-  const filteredProducts = products.filter(p => p.category === category);
-
+const ProductsGrid = ({ category }) => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const cardsToRender = getCardsToRender(filteredProducts, page);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      setLoading(true);
+      const from = (page - 1) * PRODUCTS_PER_PAGE;
+      const to = from + PRODUCTS_PER_PAGE - 1;
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category', category)
+        .range(from, to);
+      if (!error) setProducts(data || []);
+      setLoading(false);
+    }
+    fetchProducts();
+  }, [category, page]);
+
+  // === ЛОГИ для диагностики ===
+  console.log('category:', category);
+  console.log('products:', products);
+
+  if (loading) return <div>Загрузка...</div>;
 
   return (
     <div>
@@ -33,24 +39,28 @@ const ProductsGrid = () => {
         <BackButton to="/catalog" />
       </div>
       <div className="products-grid">
-        {cardsToRender.map((product, idx) => (
+        {products.map((product, idx) => (
           <ProductCard key={product.id || idx} product={product} />
         ))}
       </div>
+      {/* Пагинация */}
       <div className="pagination pagination-center">
         <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
           &lt;
         </button>
-        {[...Array(PAGE_COUNT)].map((_, idx) => (
-          <button
-            key={idx + 1}
-            onClick={() => setPage(idx + 1)}
-            className={page === idx + 1 ? 'active' : ''}
-          >
-            {idx + 1}
-          </button>
-        ))}
-        <button onClick={() => setPage(p => Math.min(PAGE_COUNT, p + 1))} disabled={page === PAGE_COUNT}>
+        <button
+          onClick={() => setPage(1)}
+          className={page === 1 ? 'active' : ''}
+        >
+          1
+        </button>
+        <button
+          onClick={() => setPage(2)}
+          className={page === 2 ? 'active' : ''}
+        >
+          2
+        </button>
+        <button onClick={() => setPage(p => p + 1)}>
           &gt;
         </button>
       </div>

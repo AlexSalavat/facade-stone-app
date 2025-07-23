@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { categories } from "../../data/categories";
-import { products } from "../../data/products";
 import ProductsGrid from "../products/ProductsGrid";
 import CategoryCard from "./CategoryCard";
 import BackButton from "../BackButton";
@@ -17,7 +16,12 @@ const CategoryView = () => {
         <h2>Категории</h2>
         <div className="category-cards-grid">
           {categories.map(cat => (
-            <CategoryCard key={cat.key} name={cat.name} image={cat.image} to={`/category/${cat.key}`} />
+            <CategoryCard
+              key={cat.key}
+              name={cat.name}
+              image={cat.image}
+              to={`/category/${cat.key}`}
+            />
           ))}
         </div>
       </div>
@@ -25,7 +29,6 @@ const CategoryView = () => {
   }
 
   const selected = categories.find(c => c.key === category);
-  const filteredProducts = products.filter(p => p.category === category);
 
   return (
     <div className="category-view">
@@ -33,7 +36,8 @@ const CategoryView = () => {
         <BackButton onClick={() => navigate("/catalog")} />
       </div>
       <h2>{selected?.name}</h2>
-      <ProductsGrid products={filteredProducts} />
+      {/* Передаём category как проп */}
+      <ProductsGrid category={category || undefined} />
     </div>
   );
 };
