@@ -7,19 +7,20 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  min-height: 220px;
-  height: 220px;
+  min-height: 210px;
+  height: 210px;
   max-height: 230px;
-  padding: 0;
+  padding: 0;                /* Убрали padding */
+  justify-content: flex-end; /* ! Это чтобы текст всегда был максимально снизу */
 }
 
 .info-card-img {
   width: 100%;
-  height: 148px;
+  height: 130px;
   object-fit: cover;
   display: block;
   background: #191b1e;
-  margin-bottom: 0; /* убрали отступ */
+  margin-bottom: 0;          /* Без отступа */
   border-radius: 0;
 }
 
@@ -28,23 +29,23 @@
   font-weight: 700;
   color: #aee3ff;
   text-align: left;
-  margin: 2px 9px 0 9px;
-  min-height: 18px;
+  margin: 2px 9px 0 9px;     /* Только сверху чуть-чуть */
+  min-height: 19px;
   line-height: 1.06;
-  max-height: 22px;
+  max-height: 23px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .info-card-content {
-  font-size: 0.81rem;
+  font-size: 0.82rem;
   color: #e3e6e6;
   text-align: left;
-  line-height: 1.08;
-  margin: 0 9px 7px 9px;
+  line-height: 1.09;
+  margin: 0 9px 7px 9px;     /* только снизу чуть-чуть */
   min-height: 15px;
-  max-height: 19px;
+  max-height: 18px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
