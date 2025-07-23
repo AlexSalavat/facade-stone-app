@@ -1,44 +1,32 @@
 export const useful = [
   {
-    key: 'pro-education',
-    title: 'PRO-Обучение: только топовые темы и практические разборы',
-    content: 'Практический рост, тренды, реальные кейсы из практики.',
-    image: '/images/useful/placeholder.jpg',
-    file: '/files/useful/placeholder.pdf',
+    title: "PRO-Обучение: только топовые темы и практические разборы",
+    content: "Профессиональный рост, практические кейсы, современные техники.",
+    image: "/images/useful/pro-education.webp"
   },
   {
-    key: 'pro-opinion',
-    title: 'PRO-Мнение лидеров: практика и инсайты успешных косметологов',
-    content: 'Реальные советы, опыт, лайфхаки и мнение от лучших практиков рынка.',
-    image: '/images/useful/placeholder.jpg',
-    file: '/files/useful/placeholder.pdf',
+    title: "PRO-Мнение лидеров: практика и инсайты успешных косметологов",
+    content: "Опыт топовых экспертов, разбор реальных кейсов.",
+    image: "/images/useful/pro-experts.webp"
   },
   {
-    key: 'legal',
-    title: 'Юридическая грамотность: законы, правила и безопасность в практике косметолога',
-    content: 'Всё, что важно знать про законы, правила, договоры и безопасность для работы без рисков.',
-    image: '/images/useful/placeholder.jpg',
-    file: '/files/useful/placeholder.pdf',
+    title: "Юридическая грамотность: законы, правила и безопасность в практике косметолога",
+    content: "Документы, нормативы, безопасность и правовые нюансы.",
+    image: "/images/useful/law.webp"
   },
   {
-    key: 'brand-marketing',
-    title: 'Личный бренд и маркетинг для косметолога',
-    content: 'Инструменты для продвижения в соцсетях, наращивания клиентской базы и развития репутации.',
-    image: '/images/useful/placeholder.jpg',
-    file: '/files/useful/placeholder.pdf',
+    title: "Личный бренд и маркетинг для косметолога",
+    content: "Продвижение, работа с соцсетями, инструменты роста клиентской базы.",
+    image: "/images/useful/branding.webp"
   },
   {
-    key: 'insights',
-    title: 'Быстрые инсайты: секретные протоколы и инъекционные лайфхаки от экспертов',
-    content: 'Уникальные советы, алгоритмы и протоколы от ведущих специалистов.',
-    image: '/images/useful/placeholder.jpg',
-    file: '/files/useful/placeholder.pdf',
+    title: "Быстрые инсайты: секретные протоколы и инъекционные лайфхаки от экспертов",
+    content: "Фишки, схемы и лайфхаки от практиков индустрии.",
+    image: "/images/useful/insights.webp"
   },
   {
-    key: 'ready-solutions',
-    title: 'Готовые решения: всё для эффективной работы и заботы о клиенте',
-    content: 'Готовые шаблоны, памятки, чек-листы и алгоритмы для реальной практики.',
-    image: '/images/useful/placeholder.jpg',
-    file: '/files/useful/placeholder.pdf',
-  },
+    title: "Готовые решения: всё для эффективной работы и заботы о клиенте",
+    content: "Чек-листы, шаблоны, памятки и материалы для практики.",
+    image: "/images/useful/solutions.webp"
+  }
 ];
