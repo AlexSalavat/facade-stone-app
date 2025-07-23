@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+// src/components/products/ProductPage.jsx
+
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { supabase } from '../../supabaseClient';
 import BackButton from '../BackButton';
-import { products } from '../../data/products';
 import CartModal from '../CartModal';
 import '../../styles/ProductPage.css';
 
@@ -9,11 +11,28 @@ const flagKR = "🇰🇷";
 
 const ProductPage = () => {
   const { productId } = useParams();
-  const product = products.find(p => String(p.id) === String(productId));
+  const [product, setProduct] = useState(null);
   const [modalImg, setModalImg] = useState(null);
   const [showCartModal, setShowCartModal] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('id', productId)
+        .single();
+      setProduct(data);
+      setLoading(false);
+    }
+    fetchProduct();
+  }, [productId]);
 
   const handleAddToCart = () => setShowCartModal(true);
+
+  if (loading) return <div>Загрузка...</div>;
 
   if (!product) {
     return (
@@ -40,14 +59,8 @@ const ProductPage = () => {
     advantages = advText;
   }
 
-  // Состав — демо (лучше прописать в product, если есть данные)
-  let composition = "";
-  if (product.id === "botulax-200") composition = "Clostridium Botulinum Toxin Type A 200 units";
-  if (product.id === "hutox-100") composition = "Ботулинический токсин типа A (Clostridium Botulinum Toxin Type A)";
-  if (product.id === "belleera-r15") composition = "Гиалуроновая кислота, 1 шприц 3 мл";
-  if (product.id === "sosum-soft") composition = "Гиалуроновая кислота, 1 шприц 3 мл";
-  if (product.id === "neuramis-deep") composition = "Гиалуроновая кислота с лидокаином 1 мл";
-  if (product.id === "kiara-reju") composition = "PDRN, гиалуроновая кислота, коэнзимы";
+  // Состав — бери из product.composition, если есть, иначе оставь пустым
+  let composition = product.composition || "";
 
   return (
     <div className="product-page">
@@ -95,12 +108,14 @@ const ProductPage = () => {
         <div className="product-desc">{descMain}</div>
       </div>
 
-      <div className="section-block">
-        <div className="section-title blue">Состав</div>
-        <div className="product-composition">
-          <em>{composition}</em>
+      {composition && (
+        <div className="section-block">
+          <div className="section-title blue">Состав</div>
+          <div className="product-composition">
+            <em>{composition}</em>
+          </div>
         </div>
-      </div>
+      )}
 
       {advantages.length > 0 && (
         <div className="section-block">
