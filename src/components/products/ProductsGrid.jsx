@@ -1,4 +1,7 @@
+// src/components/products/ProductsGrid.jsx
+
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
 import ProductCard from './ProductCard';
 import BackButton from '../BackButton';
@@ -6,7 +9,11 @@ import '../../styles/ProductsGrid.css';
 
 const PRODUCTS_PER_PAGE = 10;
 
-const ProductsGrid = ({ category }) => {
+const ProductsGrid = (props) => {
+  // Берём категорию из пропов или из URL (если проп не передан)
+  const params = useParams();
+  const category = props.category || params.category;
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -24,13 +31,14 @@ const ProductsGrid = ({ category }) => {
       if (!error) setProducts(data || []);
       setLoading(false);
     }
-    fetchProducts();
+    if (category) fetchProducts();
   }, [category, page]);
 
   // === ЛОГИ для диагностики ===
   console.log('category:', category);
   console.log('products:', products);
 
+  if (!category) return <div>Не выбрана категория</div>;
   if (loading) return <div>Загрузка...</div>;
 
   return (
