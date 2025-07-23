@@ -1,55 +1,67 @@
+.info-title-main {
+  font-size: 1.21rem;
+  font-weight: 700;
+  color: #aee3ff;
+  margin: 10px 0 8px 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 8px 6px 0 6px;
+}
+
 .info-card {
   background: #21232d;
-  border-radius: 16px;
+  border-radius: 15px;
   box-shadow: 0 2px 8px #0002;
   overflow: hidden;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  min-height: 210px;
-  height: 210px;
-  max-height: 230px;
-  padding: 0;                /* Убрали padding */
-  justify-content: flex-end; /* ! Это чтобы текст всегда был максимально снизу */
+  align-items: center;
+  min-height: 218px;
+  max-width: 100%;
+  padding: 0 0 8px 0;
+  position: relative;
 }
 
 .info-card-img {
   width: 100%;
-  height: 130px;
+  aspect-ratio: 1/1; /* делаем квадрат */
   object-fit: cover;
-  display: block;
-  background: #191b1e;
-  margin-bottom: 0;          /* Без отступа */
   border-radius: 0;
+  background: #191b1e;
+  display: block;
 }
 
 .info-card-title {
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   font-weight: 700;
   color: #aee3ff;
-  text-align: left;
-  margin: 2px 9px 0 9px;     /* Только сверху чуть-чуть */
-  min-height: 19px;
-  line-height: 1.06;
-  max-height: 23px;
+  text-align: center;
+  margin: 7px 5px 2px 5px;
+  line-height: 1.1;
+  max-height: 34px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  width: 92%;
 }
 
 .info-card-content {
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   color: #e3e6e6;
-  text-align: left;
-  line-height: 1.09;
-  margin: 0 9px 7px 9px;     /* только снизу чуть-чуть */
-  min-height: 15px;
-  max-height: 18px;
+  text-align: center;
+  line-height: 1.13;
+  margin: 0 7px 0 7px;
+  max-height: 28px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  white-space: nowrap;
+  width: 92%;
 }
