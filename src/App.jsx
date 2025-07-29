@@ -1,29 +1,24 @@
-import React from "react";
-import "./styles/Global.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
-import CategoryView from "./components/categories/CategoryView";
-import ProductPage from "./components/products/ProductPage";
-import BottomNav from "./components/shared/BottomNav";
-import NewsGrid from "./components/news/NewsGrid";
-import UsefulGrid from "./components/useful/UsefulGrid";
-import CartPage from "./components/CartPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './components/Home/Home';
+import BottomNav from './components/shared/BottomNav';
 
-const App = () => {
+// Заглушки для других страниц (создай позже или закомментируй)
+const Catalog = () => <div style={{ paddingBottom: 80, textAlign: 'center', marginTop: 64 }}>Каталог</div>;
+const News = () => <div style={{ paddingBottom: 80, textAlign: 'center', marginTop: 64 }}>Новости</div>;
+const Useful = () => <div style={{ paddingBottom: 80, textAlign: 'center', marginTop: 64 }}>Полезное</div>;
+const Cart = () => <div style={{ paddingBottom: 80, textAlign: 'center', marginTop: 64 }}>Корзина</div>;
+
+export default function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<CategoryView />} />
-        <Route path="/category/:category" element={<CategoryView />} />
-        <Route path="/product/:productId" element={<ProductPage />} />
-        <Route path="/news" element={<NewsGrid />} />
-        <Route path="/useful" element={<UsefulGrid />} />
-        <Route path="/cart" element={<CartPage />} />
+        <Route path="/catalog" element={<Catalog />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/useful" element={<Useful />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <BottomNav />
-    </Router>
+    </BrowserRouter>
   );
-};
-
-export default App;
+}

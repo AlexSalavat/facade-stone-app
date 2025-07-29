@@ -1,19 +1,11 @@
-import React from "react";
-import '../../styles/Home.css';
+import './Home.css';
 
 export default function Home() {
   return (
-    <div className="home-bg">
-      <div className="home-overlay" />
-      <div className="container">
-        <div className="home-content">
-          <div className="home-logo">LumiSkin</div>
-          <div className="home-desc">
-            Каталог оригинальных корейских инъекций.<br />
-            Новости, прямые поставки, всё о современной косметологии.
-          </div>
-        </div>
-      </div>
+    <div className="home">
+      <img src="/images/bg.webp" alt="Баннер" className="home-banner" />
+      <h1 className="home-title">LumiSkin PRO</h1>
+      <p className="home-desc">Крутой косметологический маркетплейс</p>
     </div>
   );
 }
