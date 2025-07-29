@@ -5,6 +5,7 @@
   background: url('/images/bg.webp') no-repeat center center;
   background-size: cover;
   overflow: hidden;
+  padding-bottom: 90px; /* Добавили для отступа под навигацию! */
 }
 
 .home-overlay {
@@ -20,14 +21,15 @@
   max-width: 520px;
   margin: 0 auto;
   padding: 0 12px;
-  height: 100vh;
+  /* height: 100vh; — УБРАТЬ! */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-height: 70vh; /* Немного, чтобы был центр */
 }
 
 .home-content {
-  margin-top: 16vh;
+  margin-top: 12vh;  /* Можно уменьшить, чтобы текст был выше */
   text-align: center;
 }
 
@@ -54,5 +56,8 @@
   }
   .home-desc {
     font-size: 1rem;
+  }
+  .container {
+    min-height: 55vh;
   }
 }
