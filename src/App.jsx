@@ -1,21 +1,36 @@
-import { Routes, Route } from "react-router-dom";
-import Home from './components/Home/Home';
+import { Routes, Route, Navigate } from "react-router-dom";
 import BottomNav from './components/shared/BottomNav';
 
-const Catalog = () => <div style={{height:'100vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#181a20',color:'#fff',fontSize:22}}>Каталог</div>;
-const News = () => <div style={{height:'100vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#181a20',color:'#fff',fontSize:22}}>Новости</div>;
-const Market = () => <div style={{height:'100vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#181a20',color:'#fff',fontSize:22}}>Маркет</div>;
-const Cart = () => <div style={{height:'100vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#181a20',color:'#fff',fontSize:22}}>Корзина</div>;
+// Импортируем основные страницы
+import Home from './components/Home/Home';
+import CategoryView from './components/categories/CategoryView';
+import ProductPage from './components/products/ProductPage';
+import CartPage from './components/CartPage';
+import NewsGrid from './components/news/NewsGrid';
+import UsefulGrid from './components/useful/UsefulGrid';
 
 export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/market" element={<Market />} />
-        <Route path="/cart" element={<Cart />} />
+        
+        {/* Каталог */}
+        <Route path="/catalog" element={<CategoryView />} />
+        {/* Продуктовые страницы, если есть */}
+        <Route path="/product/:id" element={<ProductPage />} />
+
+        {/* Новости */}
+        <Route path="/news" element={<NewsGrid />} />
+
+        {/* Полезное */}
+        <Route path="/useful" element={<UsefulGrid />} />
+
+        {/* Корзина */}
+        <Route path="/cart" element={<CartPage />} />
+
+        {/* Fallback: редирект на главную */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <BottomNav />
     </>
