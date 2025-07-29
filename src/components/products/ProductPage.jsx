@@ -71,6 +71,10 @@ const ProductPage = () => {
             className="product-header-img"
             draggable={false}
           />
+          {/* Бейдж — если есть */}
+          {product.status && (
+            <div className="product-status-badge">{product.status}</div>
+          )}
         </div>
         <div className="product-header-info">
           <div className="product-title">{product.name}</div>
@@ -79,6 +83,10 @@ const ProductPage = () => {
             <span className="product-country">{flagKR} Корея</span>
             <span className="product-rating">★ {product.rating}</span>
           </div>
+          {/* Остаток, если есть */}
+          {typeof product.stock === "number" && (
+            <div className="stock-info">В наличии: {product.stock} шт.</div>
+          )}
         </div>
       </div>
 
@@ -148,7 +156,7 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* PDF/сертификаты - без выделения, просто ссылками */}
+      {/* PDF/сертификаты */}
       <div className="product-buttons-row files-row">
         {product.passport_pdf && (
           <a
@@ -172,12 +180,14 @@ const ProductPage = () => {
         )}
       </div>
 
-      {/* Бонус/подарок — без выделения */}
-      <div className="bonus-simple">
-        🎁 Подарок или скидка при оформлении заказа
-      </div>
+      {/* Бонус — если есть */}
+      {product.bonus && (
+        <div className="bonus-simple">
+          🎁 {product.bonus}
+        </div>
+      )}
 
-      {/* Кнопки в одну строку, обычные без заливки */}
+      {/* Кнопки */}
       <div className="product-buttons-row btns-row">
         <button
           className="ask-btn"

@@ -14,6 +14,7 @@
   padding: 0 13px 7px 13px;
   margin-top: 10px;
   margin-bottom: 0;
+  position: relative;
 }
 .product-header-img-wrap {
   flex: 0 0 128px;
@@ -27,6 +28,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .product-header-img {
   width: 100%;
@@ -35,6 +37,20 @@
   border-radius: 17px;
   background: #232323;
   display: block;
+}
+/* Бейдж статус */
+.product-status-badge {
+  display: inline-block;
+  background: #f85ca2;
+  color: #fff;
+  font-size: 0.93rem;
+  font-weight: 700;
+  border-radius: 11px;
+  padding: 4px 13px;
+  position: absolute;
+  left: 8px; top: 8px;
+  z-index: 2;
+  box-shadow: 0 3px 11px #1b17213a;
 }
 .product-header-info {
   flex: 1;
@@ -66,6 +82,12 @@
   gap: 11px;
   font-size: 0.97rem;
   align-items: center;
+}
+.stock-info {
+  color: #aafcce;
+  font-size: 0.92rem;
+  margin-top: 3px;
+  font-weight: 500;
 }
 
 /* Галерея */
