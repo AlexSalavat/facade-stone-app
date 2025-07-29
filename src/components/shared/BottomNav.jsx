@@ -1,62 +1,49 @@
+// src/components/shared/BottomNav.jsx
+
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { useCartCtx } from "../../context/CartContext";
-import "../../styles/BottomNav.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LayoutList, Newspaper, ShoppingCart, Info } from "lucide-react";
 
-const BottomNav = () => {
-  const navigate = useNavigate();
+// Настрой пути и иконки под свои разделы!
+const tabs = [
+  { label: "Каталог", icon: LayoutList, path: "/catalog" },
+  { label: "Новости", icon: Newspaper, path: "/news" },
+  { label: "Полезное", icon: Info, path: "/useful" },
+  { label: "Корзина", icon: ShoppingCart, path: "/cart" }
+];
+
+function BottomNav() {
   const location = useLocation();
-  const { cart } = useCartCtx();
-  const cartCount = cart.reduce((sum, p) => sum + p.qty, 0);
-
-  const navItems = [
-    { label: "Каталог", path: "/catalog" },
-    { label: "Новости", path: "/news" },
-    { label: "Полезное", path: "/useful" },
-    {
-      label: (
-        <span style={{ position: "relative", display: "inline-block" }}>
-          Корзина
-          {cartCount > 0 && (
-            <span style={{
-              position: "absolute",
-              top: -9,
-              right: -19,
-              background: "#ff4b7a",
-              color: "#fff",
-              borderRadius: "10px",
-              fontSize: 12,
-              padding: "0 7px",
-              fontWeight: 700,
-              minWidth: 20,
-              display: "inline-block",
-              lineHeight: "18px",
-              boxShadow: "0 2px 7px #0002"
-            }}>
-              {cartCount}
-            </span>
-          )}
-        </span>
-      ),
-      path: "/cart"
-    }
-  ];
+  const navigate = useNavigate();
 
   return (
-    <nav className="bottom-nav">
-      {navItems.map(item => (
-        <button
-          key={typeof item.label === "string" ? item.label : item.path}
-          onClick={() => navigate(item.path)}
-          className={location.pathname.startsWith(item.path) ? "active" : ""}
-          type="button"
-          tabIndex={0}
-        >
-          {item.label}
-        </button>
-      ))}
+    <nav className="fixed bottom-0 left-0 w-full bg-zinc-950 border-t border-zinc-800 flex justify-around z-30 py-2 shadow-xl">
+      {tabs.map((tab) => {
+        const active = location.pathname.startsWith(tab.path);
+        const Icon = tab.icon;
+        return (
+          <button
+            key={tab.path}
+            onClick={() => navigate(tab.path)}
+            className={`
+              flex flex-col items-center justify-center flex-1 gap-0.5
+              transition-all duration-150
+              py-1.5
+              ${active
+                ? "text-sky-400 font-bold bg-gradient-to-t from-sky-900/50 via-sky-900/10 rounded-xl shadow-[0_2px_17px_#38bdf84f]"
+                : "text-zinc-400"}
+            `}
+            style={{
+              fontSize: 13.5
+            }}
+          >
+            <Icon size={26} strokeWidth={2.2} />
+            <span style={{ marginTop: 2 }}>{tab.label}</span>
+          </button>
+        );
+      })}
     </nav>
   );
-};
+}
 
 export default BottomNav;
