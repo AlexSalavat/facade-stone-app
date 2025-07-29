@@ -8,27 +8,27 @@ const ProductCard = ({ product }) => {
   if (product.placeholder) {
     return (
       <div className="product-card placeholder-card">
-        <div className="product-card-info">
-          <span className="product-card-title">Новинка в пути</span>
-        </div>
+        <div className="product-card-title">Новинка в пути</div>
       </div>
     );
   }
 
   return (
-    <div className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
-      <div className="product-card-image-wrap">
+    <div
+      className="product-card"
+      onClick={() => navigate(`/product/${product.id}`)}
+      tabIndex={0}
+      role="button"
+    >
+      <div className="product-card-img-wrap">
         <img
           src={product.images?.[0]}
           alt={product.name}
-          className="product-card-image"
+          className="product-card-img"
           loading="lazy"
         />
       </div>
-      <div className="product-card-info">
-        <h3 className="product-card-title">{product.name}</h3>
-        <span className="product-card-more">Подробнее</span>
-      </div>
+      <div className="product-card-title">{product.name}</div>
     </div>
   );
 };
