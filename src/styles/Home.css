@@ -1,32 +1,60 @@
 .home {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #f6fbff 50%, #e8f0ff 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 80px; /* чтобы навбар не перекрывал */
-  min-height: 100vh;
-  box-sizing: border-box;
-  background: #f8faff;
+  justify-content: flex-start;
+  padding-bottom: 90px;
 }
 
 .home-banner {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 24px;
   margin-top: 32px;
+  width: 94vw;
+  max-width: 500px;
+  aspect-ratio: 16/8;
+  object-fit: cover;
+  border-radius: 36px;
+  box-shadow: 0 4px 36px rgba(56, 80, 200, 0.18), 0 2px 6px #d6ecff;
+  animation: fadeIn 1.2s cubic-bezier(.45,1.56,.56,1) both;
+}
+
+.home-title-wrap {
+  margin-top: 28px;
+  background: rgba(255,255,255,0.9);
+  padding: 24px 36px 18px;
+  border-radius: 26px;
+  box-shadow: 0 2px 22px rgba(56, 80, 200, 0.11);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 1.3s cubic-bezier(.45,1.56,.56,1) both;
 }
 
 .home-title {
-  margin: 32px 0 8px;
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: 2.6rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #346cff 45%, #4edfff 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
   text-align: center;
 }
 
 .home-desc {
-  color: #555;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  color: #355;
+  opacity: 0.87;
   text-align: center;
-  max-width: 400px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96);}
+  to   { opacity: 1; transform: scale(1);}
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(38px);}
+  to   { opacity: 1; transform: translateY(0);}
 }
