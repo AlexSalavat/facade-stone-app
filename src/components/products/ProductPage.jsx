@@ -9,6 +9,27 @@ import '../../styles/ProductPage.css';
 
 const flagKR = "🇰🇷";
 
+const badgeColors = {
+  new: "#64b5f6",
+  hit: "#f06292",
+  top: "#fbc02d",
+  expert: "#00e676"
+};
+
+function getBadge(status) {
+  if (!status) return null;
+  let text = "";
+  let color = "";
+  switch (status) {
+    case "new": text = "Новинка"; color = badgeColors.new; break;
+    case "hit": text = "Хит продаж"; color = badgeColors.hit; break;
+    case "top": text = "Топ"; color = badgeColors.top; break;
+    case "expert": text = "Выбор экспертов"; color = badgeColors.expert; break;
+    default: text = status; color = "#333";
+  }
+  return <span className="product-badge" style={{ background: color }}>{text}</span>;
+}
+
 const ProductPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -19,7 +40,7 @@ const ProductPage = () => {
   useEffect(() => {
     async function fetchProduct() {
       setLoading(true);
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('products')
         .select('*')
         .eq('id', productId)
@@ -33,7 +54,6 @@ const ProductPage = () => {
   const handleAddToCart = () => setShowCartModal(true);
 
   if (loading) return <div>Загрузка...</div>;
-
   if (!product) {
     return (
       <div className="product-page">
@@ -43,7 +63,7 @@ const ProductPage = () => {
     );
   }
 
-  // Преимущества и прочее
+  // Преимущества (разделяем если есть)
   let description = product.description || "";
   let descMain = description;
   let advantages = [];
@@ -58,43 +78,51 @@ const ProductPage = () => {
       .filter(l => l.trim());
     advantages = advText;
   }
-
-  // Состав — бери из product.composition, если есть, иначе оставь пустым
   let composition = product.composition || "";
+
+  // Динамический бейдж
+  const badge = getBadge(product.status);
 
   return (
     <div className="product-page">
       <BackButton />
-      <div className="product-main-section">
-        <img
-          src={product.images?.[0]}
-          alt={product.name}
-          className="product-main-img"
-          draggable={false}
-        />
-        <div className="product-info-block">
+
+      {/* Компактный БЛОК: фото слева, справа текст */}
+      <div className="product-main-compact">
+        <div className="product-main-img-wrap">
+          <img
+            src={product.images?.[0]}
+            alt={product.name}
+            className="product-main-img"
+            draggable={false}
+          />
+          {badge}
+        </div>
+        <div className="product-main-info">
           <div className="product-title">{product.name}</div>
           <div className="product-price">{product.price} ₽</div>
           <div className="product-meta">
-            <span className="product-country">{flagKR} Корея</span>
+            <span className="product-country">{flagKR} {product.country}</span>
             <span className="product-rating">★ {product.rating}</span>
           </div>
         </div>
       </div>
 
-      {/* Галерея */}
-      <div className="product-gallery-thumbs">
-        {product.images?.map((img, idx) => (
-          <img
-            src={img}
-            alt={`${product.name}-thumb-${idx}`}
-            key={idx}
-            className="product-thumb-img"
-            onClick={() => setModalImg(img)}
-            draggable={false}
-          />
-        ))}
-      </div>
+      {/* Галерея (если есть еще фото) */}
+      {product.images && product.images.length > 1 && (
+        <div className="product-gallery-thumbs">
+          {product.images.slice(1).map((img, idx) => (
+            <img
+              src={img}
+              alt={`${product.name}-thumb-${idx}`}
+              key={idx}
+              className="product-thumb-img"
+              onClick={() => setModalImg(img)}
+              draggable={false}
+            />
+          ))}
+        </div>
+      )}
 
       {/* Модалка для фото */}
       {modalImg && (
@@ -103,6 +131,18 @@ const ProductPage = () => {
         </div>
       )}
 
+      {/* Блок “Почему выбирают этот препарат” */}
+      <div className="section-block why-block">
+        <div className="section-title purple">Почему выбирают этот препарат?</div>
+        <ul className="why-list">
+          <li>Оригинальная поставка из Кореи</li>
+          <li>Высокая чистота и безопасность</li>
+          <li>Эффект 6–9 месяцев</li>
+          <li>Рекомендовано ведущими экспертами</li>
+        </ul>
+      </div>
+
+      {/* Описание */}
       <div className="section-block">
         <div className="section-title purple">О препарате</div>
         <div className="product-desc">{descMain}</div>
@@ -135,18 +175,40 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* Кнопки PDF/вопрос */}
+      {/* PDF/Сертификаты */}
+      {(product.passport_pdf || product.protocol_pdf) && (
+        <div className="product-buttons-row pdf-row">
+          {product.passport_pdf && (
+            <a
+              href={product.passport_pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn pdf-btn custom-btn"
+            >
+              📄 Паспорт препарата
+            </a>
+          )}
+          {product.protocol_pdf && (
+            <a
+              href={product.protocol_pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn pdf-btn custom-btn"
+              style={{ background: "#f3b421", color: "#1c1c1f" }}
+            >
+              📄 Протокол безопасности
+            </a>
+          )}
+        </div>
+      )}
+
+      {/* Бонус/Подарок */}
+      <div className="bonus-block">
+        🎁 Пробник в подарок при покупке от 3 шт!
+      </div>
+
+      {/* Кнопка — вопрос */}
       <div className="product-buttons-row">
-        {product.pdf && (
-          <a
-            href={product.pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn pdf-btn custom-btn"
-          >
-            📄 Открыть PDF
-          </a>
-        )}
         <button
           className="btn ask-btn custom-btn"
           onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}
@@ -154,6 +216,7 @@ const ProductPage = () => {
           💬 Задать вопрос
         </button>
       </div>
+
       {/* Кнопка в корзину */}
       <div className="product-buttons-row cart-row">
         <button className="btn cart-btn" onClick={handleAddToCart}>
