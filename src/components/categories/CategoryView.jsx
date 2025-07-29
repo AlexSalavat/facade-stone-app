@@ -9,7 +9,7 @@ const CategoryView = () => {
   const { category } = useParams();
   const navigate = useNavigate();
 
-  // Если в URL есть категория — показываем товары этой категории
+  // Если выбран параметр категории — показываем товары этой категории
   if (category) {
     const categoryObj = categories.find(c => c.key === category);
     return (
@@ -20,7 +20,7 @@ const CategoryView = () => {
     );
   }
 
-  // Если категории нет в URL — показываем сетку всех категорий
+  // Если категории нет — показываем сетку всех категорий
   return (
     <div className="category-view">
       <h2>Категории</h2>

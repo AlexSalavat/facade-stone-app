@@ -13,7 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<CategoryView />} />
-        <Route path="/category/:category" element={<CategoryView />} />
+        <Route path="/catalog/:category" element={<CategoryView />} />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="/news" element={<NewsGrid />} />
         <Route path="/useful" element={<UsefulGrid />} />
