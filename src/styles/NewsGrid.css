@@ -8,7 +8,7 @@
 .news-cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 17px 8px;
+  gap: 15px 7px;
   padding: 0 10px 14px 10px;
 }
 
@@ -17,21 +17,21 @@
   flex-direction: column;
   align-items: center;
   background: transparent;
-  border-radius: 19px;
+  border-radius: 17px;
   overflow: visible;
-  width: 176px;
-  min-height: 244px;
+  width: 168px;
+  min-height: 205px;
   cursor: pointer;
 }
 
 .news-card-imgwrap {
   width: 100%;
-  aspect-ratio: 1.2/1; /* чуть прямоугольнее */
-  background: #222226;
-  border-radius: 18px;
+  aspect-ratio: 1.18/1;
+  background: #1e2025;
+  border-radius: 15px;
   overflow: hidden;
-  margin-bottom: 13px;
-  box-shadow: 0 3px 16px #15181b0f;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 12px #10121619;
 }
 
 .news-card-img {
@@ -49,14 +49,14 @@
 }
 
 .news-card-title {
-  font-size: 1.11rem;
+  font-size: 0.98rem;
   font-weight: 700;
   color: #fff;
   text-align: center;
-  line-height: 1.18;
-  margin-bottom: 4px;
-  min-height: 36px;
-  max-height: 38px;
+  line-height: 1.15;
+  margin-bottom: 2.5px;
+  min-height: 32px;
+  max-height: 34px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
@@ -66,13 +66,13 @@
 }
 
 .news-card-content {
-  font-size: 0.99rem;
-  color: #b7ffec;
+  font-size: 0.88rem;
+  color: #aaf6d6;
   text-align: center;
-  line-height: 1.17;
-  padding: 0 4px;
-  min-height: 33px;
-  max-height: 38px;
+  line-height: 1.13;
+  padding: 0 2px;
+  min-height: 27px;
+  max-height: 29px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
