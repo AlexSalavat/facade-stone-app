@@ -4,85 +4,82 @@
   bottom: 0;
   width: 100vw;
   height: 60px;
-  background: rgba(18,20,26,0.94);
-  box-shadow: 0 -4px 32px #0007, 0 0.5px 0 #252525cc;
-  border-radius: 22px 22px 0 0;
+  background: rgba(23,24,29,0.97);
+  box-shadow: 0 -2px 18px #0005;
+  border-top: 1.5px solid #21232b36;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 100;
-  border-top: 1.5px solid #25252528;
-  /* glass blur */
-  backdrop-filter: blur(16px) saturate(160%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  z-index: 99;
+  /* Легкий blur для “дорогого” стиля */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   user-select: none;
-  overflow: hidden;
 }
 
 .nav-btn {
   flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #b5bdd2;
+  color: #b2b7c8;
   font-size: 1rem;
   font-weight: 500;
-  padding: 0 4px;
-  height: 100%;
-  transition: color 0.17s cubic-bezier(.55,0,.1,1), 
-              background 0.18s cubic-bezier(.55,0,.1,1), 
-              box-shadow 0.18s cubic-bezier(.55,0,.1,1);
+  padding: 0 2px;
   border: none;
   background: none;
   outline: none;
   cursor: pointer;
-  border-radius: 17px;
-  margin: 0 2.5px;
+  transition: color 0.19s, background 0.15s, box-shadow 0.13s;
+  border-radius: 14px;
   position: relative;
 }
 
 .nav-btn:active {
-  background: rgba(90,184,255,0.11);
+  background: rgba(70,170,255,0.07);
 }
 
 .nav-btn.active,
 .nav-btn[aria-current="page"] {
-  color: #57b3fd;
-  background: linear-gradient(105deg,rgba(91,176,255,0.10) 0%,rgba(145,218,255,0.14) 100%);
-  box-shadow: 0 3px 17px #42c3fd1a, 0 2px 7px #43a8f51a;
+  color: #41b0ff;
   font-weight: 700;
+  /* Тонкая линия под активной */
 }
-.nav-btn.active::before,
-.nav-btn[aria-current="page"]::before {
+.nav-btn.active::after,
+.nav-btn[aria-current="page"]::after {
   content: "";
   display: block;
   position: absolute;
-  left: 12px; right: 12px; bottom: 5.5px;
-  height: 2.5px;
+  left: 20%;
+  right: 20%;
+  bottom: 8px;
+  height: 2.6px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #48e0ff 20%, #89e6ff 100%);
-  opacity: 0.8;
-  box-shadow: 0 1px 6px #79e9ff75;
+  background: linear-gradient(90deg, #34caff 20%, #89e6ff 100%);
+  opacity: 0.85;
+  box-shadow: 0 1px 7px #87e9ff44;
 }
 
 .nav-ico {
-  font-size: 1.62rem;
+  font-size: 1.45rem;
   margin-bottom: 0.5px;
   display: block;
-  transition: color 0.19s;
+  transition: color 0.18s;
 }
 
 .nav-label {
   font-size: 0.84rem;
-  opacity: 0.95;
+  opacity: 0.96;
   margin-top: 2.5px;
   font-weight: 400;
   letter-spacing: 0.1px;
 }
 
+/* Мобильная адаптация */
 @media (max-width: 600px) {
-  .bottom-nav { height: 53px; }
-  .nav-ico svg { width: 21px; height: 21px; }
-  .nav-label { font-size: 0.76rem; }
+  .bottom-nav { height: 52px; }
+  .nav-ico svg { width: 20px; height: 20px; }
+  .nav-label { font-size: 0.77rem; }
 }
