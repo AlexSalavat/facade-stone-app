@@ -1,60 +1,45 @@
 .home {
   min-height: 100vh;
-  background: linear-gradient(120deg, #f6fbff 50%, #e8f0ff 100%);
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('/images/bg.jpg') center center/cover no-repeat;
+  width: 100vw; height: 100vh;
+  z-index: 0;
+}
+
+.home-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.23); /* затемнение */
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding-bottom: 90px;
-}
-
-.home-banner {
-  margin-top: 32px;
-  width: 94vw;
-  max-width: 500px;
-  aspect-ratio: 16/8;
-  object-fit: cover;
-  border-radius: 36px;
-  box-shadow: 0 4px 36px rgba(56, 80, 200, 0.18), 0 2px 6px #d6ecff;
-  animation: fadeIn 1.2s cubic-bezier(.45,1.56,.56,1) both;
-}
-
-.home-title-wrap {
-  margin-top: 28px;
-  background: rgba(255,255,255,0.9);
-  padding: 24px 36px 18px;
-  border-radius: 26px;
-  box-shadow: 0 2px 22px rgba(56, 80, 200, 0.11);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: fadeInUp 1.3s cubic-bezier(.45,1.56,.56,1) both;
+  justify-content: center;
 }
 
 .home-title {
-  font-size: 2.6rem;
-  font-weight: 800;
-  background: linear-gradient(90deg, #346cff 45%, #4edfff 90%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+  color: #fff;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 1.2px;
   text-align: center;
+  text-shadow: 0 3px 24px #0008, 0 1px 3px #0006;
 }
 
 .home-desc {
-  font-size: 1.2rem;
-  color: #355;
-  opacity: 0.87;
+  color: #f3f3f3;
+  font-size: 1.09rem;
+  font-weight: 400;
   text-align: center;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.96);}
-  to   { opacity: 1; transform: scale(1);}
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(38px);}
-  to   { opacity: 1; transform: translateY(0);}
+  max-width: 94vw;
+  line-height: 1.5;
+  text-shadow: 0 2px 10px #0006;
 }
