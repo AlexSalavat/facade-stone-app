@@ -1,33 +1,46 @@
-import '../../styles/BottomNav.css';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LayoutList, Newspaper, Store, ShoppingCart } from "lucide-react";
 
-export default function BottomNav() {
+const tabs = [
+  { label: "Каталог", icon: LayoutList, path: "/catalog" },
+  { label: "Новости", icon: Newspaper, path: "/news" },
+  { label: "Маркет", icon: Store, path: "/market" },
+  { label: "Корзина", icon: ShoppingCart, path: "/cart" }
+];
+
+function BottomNav() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
-    <nav className="bottom-nav">
-      <NavLink to="/" end>
-        <span className="nav-ico">
-          <svg width="26" height="26"><use xlinkHref="#icon-list" /></svg>
-        </span>
-        <span className="nav-label">Каталог</span>
-      </NavLink>
-      <NavLink to="/news">
-        <span className="nav-ico">
-          <svg width="26" height="26"><use xlinkHref="#icon-news" /></svg>
-        </span>
-        <span className="nav-label">Новости</span>
-      </NavLink>
-      <NavLink to="/market">
-        <span className="nav-ico">
-          <svg width="26" height="26"><use xlinkHref="#icon-market" /></svg>
-        </span>
-        <span className="nav-label">Маркет</span>
-      </NavLink>
-      <NavLink to="/profile">
-        <span className="nav-ico">
-          <svg width="26" height="26"><use xlinkHref="#icon-profile" /></svg>
-        </span>
-        <span className="nav-label">Профиль</span>
-      </NavLink>
+    <nav className="fixed bottom-0 left-0 w-full bg-zinc-950 border-t border-zinc-800 flex justify-around z-30 py-2 shadow-xl">
+      {tabs.map((tab) => {
+        const active = location.pathname.startsWith(tab.path);
+        const Icon = tab.icon;
+        return (
+          <button
+            key={tab.path}
+            onClick={() => navigate(tab.path)}
+            className={`
+              flex flex-col items-center justify-center flex-1 gap-0.5
+              transition-all duration-150
+              py-1.5
+              ${active
+                ? "text-sky-400 font-bold bg-gradient-to-t from-sky-900/50 via-sky-900/10 rounded-xl shadow-[0_2px_17px_#38bdf84f]"
+                : "text-zinc-400"}
+            `}
+            style={{
+              fontSize: 13.5
+            }}
+          >
+            <Icon size={26} strokeWidth={2.2} />
+            <span style={{ marginTop: 2 }}>{tab.label}</span>
+          </button>
+        );
+      })}
     </nav>
   );
 }
+
+export default BottomNav;

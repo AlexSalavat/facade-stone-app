@@ -5,10 +5,10 @@ export default function Home() {
     <div className="home">
       <div className="home-bg" />
       <div className="home-overlay">
-        <h1 className="home-title">PORT MARKET</h1>
+        <h1 className="home-title">LumiSkin PRO</h1>
         <p className="home-desc">
-          Цифровой морской рынок: от вылова до продажи,<br />
-          от Камчатки до твоего склада
+          Каталог оригинальных корейских инъекций.<br />
+          Новости, поставки, современная косметология.
         </p>
       </div>
     </div>
