@@ -1,32 +1,50 @@
 export const news = [
   {
+    id: 1,
     title: "Новые стандарты и тренды инъекционной косметологии",
     content: "Глобальные изменения, ключевые тенденции рынка, регуляции, мировые тренды.",
-    image: "/images/news/standards.webp"
+    image: "/images/news/standards.webp",
+    date: "2024-07-30",
+    link: null
   },
   {
+    id: 2,
     title: "Апгрейд ассортимента: новые препараты и эксклюзивные поступления",
     content: "Свежие препараты, новые линейки, эксклюзивные продукты.",
-    image: "/images/news/new-products.webp"
+    image: "/images/news/new-products.webp",
+    date: "2024-07-28",
+    link: null
   },
   {
+    id: 3,
     title: "События и мероприятия: форумы, выставки, премии, конференции",
     content: "Анонсы и итоги главных событий рынка, обучающие съезды, профильные конференции.",
-    image: "/images/news/events.webp"
+    image: "/images/news/events.webp",
+    date: "2024-07-27",
+    link: null
   },
   {
+    id: 4,
     title: "Революция препаратов: новые формулы, next gen технологии и биостимуляторы",
     content: "Инновационные препараты, коллагеновые бустеры, экзосомы, новейшие филлеры.",
-    image: "/images/news/revolution.webp"
+    image: "/images/news/revolution.webp",
+    date: "2024-07-25",
+    link: null
   },
   {
+    id: 5,
     title: "Международный обмен: мировые тренды и “экспортные” методики",
     content: "Инсайты с зарубежных форумов, кейсы интеграции новых технологий из США, Кореи, Европы.",
-    image: "/images/news/international.webp"
+    image: "/images/news/international.webp",
+    date: "2024-07-22",
+    link: null
   },
   {
+    id: 6,
     title: "Эко-генетика красоты: персонализированные и устойчивые инъекционные решения",
     content: "Персонализированные подходы и устойчивые практики в современной инъекционной косметологии.",
-    image: "/images/news/eco-genetic.webp"
+    image: "/images/news/eco-genetic.webp",
+    date: "2024-07-18",
+    link: null
   }
 ];

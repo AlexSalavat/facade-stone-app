@@ -1,18 +1,20 @@
 import React from "react";
-import "../../styles/InfoGrid.css";
-import BackButton from "../BackButton";
 import { news } from "../../data/news";
+import "../../styles/NewsGrid.css";
+import BackButton from "../BackButton";
 
 const NewsGrid = () => (
   <div>
     <BackButton />
-    <h2 className="info-title-main">Новости</h2>
-    <div className="info-grid">
-      {news.map((item, idx) => (
-        <div className="info-card" key={idx}>
-          <img src={item.image} alt={item.title} className="info-card-img" />
-          <div className="info-card-title">{item.title}</div>
-          <div className="info-card-content">{item.content}</div>
+    <h2 className="news-title-main">Новости</h2>
+    <div className="news-grid">
+      {news.map(item => (
+        <div className="news-card" key={item.id}>
+          <div className="news-card-image-wrap">
+            <img src={item.image} alt={item.title} className="news-card-image" />
+          </div>
+          <div className="news-card-title">{item.title}</div>
+          <div className="news-card-content">{item.content}</div>
         </div>
       ))}
     </div>
