@@ -1,5 +1,3 @@
-// src/components/products/ProductPage.jsx
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../../supabaseClient';
@@ -87,9 +85,9 @@ const ProductPage = () => {
     <div className="product-page">
       <BackButton />
 
-      {/* Компактный БЛОК: фото слева, справа текст */}
+      {/* --- Главный блок --- */}
       <div className="product-main-compact">
-        <div className="product-main-img-wrap">
+        <div className="product-main-img-wrap large">
           <img
             src={product.images?.[0]}
             alt={product.name}
@@ -124,14 +122,13 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* Модалка для фото */}
       {modalImg && (
         <div className="img-modal" onClick={() => setModalImg(null)}>
           <img src={modalImg} alt="big" />
         </div>
       )}
 
-      {/* Блок “Почему выбирают этот препарат” */}
+      {/* Почему выбирают */}
       <div className="section-block why-block">
         <div className="section-title purple">Почему выбирают этот препарат?</div>
         <ul className="why-list">
@@ -175,9 +172,9 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* PDF/Сертификаты */}
+      {/* PDF/Сертификаты в одну строку */}
       {(product.passport_pdf || product.protocol_pdf) && (
-        <div className="product-buttons-row pdf-row">
+        <div className="product-buttons-row pdf-row pdf-row-inline">
           {product.passport_pdf && (
             <a
               href={product.passport_pdf}
@@ -196,7 +193,7 @@ const ProductPage = () => {
               className="btn pdf-btn custom-btn"
               style={{ background: "#f3b421", color: "#1c1c1f" }}
             >
-              📄 Протокол безопасности
+              📑 Протокол безопасности
             </a>
           )}
         </div>
@@ -207,22 +204,19 @@ const ProductPage = () => {
         🎁 Пробник в подарок при покупке от 3 шт!
       </div>
 
-      {/* Кнопка — вопрос */}
-      <div className="product-buttons-row">
+      {/* Нижний action-блок — вопросы и корзина рядом! */}
+      <div className="action-row-bottom">
         <button
           className="btn ask-btn custom-btn"
           onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}
         >
           💬 Задать вопрос
         </button>
-      </div>
-
-      {/* Кнопка в корзину */}
-      <div className="product-buttons-row cart-row">
         <button className="btn cart-btn" onClick={handleAddToCart}>
           В корзину
         </button>
       </div>
+
       {showCartModal && (
         <CartModal
           product={product}
