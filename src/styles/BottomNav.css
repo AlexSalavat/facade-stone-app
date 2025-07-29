@@ -1,7 +1,7 @@
 .bottom-nav {
   position: fixed;
   left: 0;
-  bottom: 18px; /* ПРИПОДНЯТЬ панель, чтобы не залезала на край! */
+  bottom: 34px; /* ← чуть выше, чем раньше! */
   width: 100vw;
   max-width: 100vw;
   height: 59px;
@@ -88,7 +88,7 @@
     height: 50px;
     border-radius: 13px 13px 15px 15px;
     padding: 0 2vw;
-    bottom: 11px;
+    bottom: 22px; /* и тут чуть выше */
   }
   .nav-btn {
     min-width: 40px;
