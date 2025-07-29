@@ -1,38 +1,40 @@
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import BottomNav from './components/shared/BottomNav';
+import Home from "./components/Home/Home";
+import CategoryView from "./components/categories/CategoryView";
+import ProductPage from "./components/products/ProductPage";
+import CartPage from "./components/CartPage";
+import NewsGrid from "./components/news/NewsGrid";
+import UsefulGrid from "./components/useful/UsefulGrid";
+import BottomNav from "./components/shared/BottomNav";
+// import другие нужные компоненты (если есть)
 
-// Импортируем основные страницы
-import Home from './components/Home/Home';
-import CategoryView from './components/categories/CategoryView';
-import ProductPage from './components/products/ProductPage';
-import CartPage from './components/CartPage';
-import NewsGrid from './components/news/NewsGrid';
-import UsefulGrid from './components/useful/UsefulGrid';
+const App = () => (
+  <>
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-export default function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        
-        {/* Каталог */}
-        <Route path="/catalog" element={<CategoryView />} />
-        {/* Продуктовые страницы, если есть */}
-        <Route path="/product/:id" element={<ProductPage />} />
+      {/* Каталог и категория */}
+      <Route path="/catalog" element={<CategoryView />} />
+      <Route path="/catalog/:category" element={<CategoryView />} />
 
-        {/* Новости */}
-        <Route path="/news" element={<NewsGrid />} />
+      {/* Страница товара */}
+      <Route path="/product/:productId" element={<ProductPage />} />
 
-        {/* Полезное */}
-        <Route path="/useful" element={<UsefulGrid />} />
+      {/* Корзина */}
+      <Route path="/cart" element={<CartPage />} />
 
-        {/* Корзина */}
-        <Route path="/cart" element={<CartPage />} />
+      {/* Новости */}
+      <Route path="/news" element={<NewsGrid />} />
 
-        {/* Fallback: редирект на главную */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-      <BottomNav />
-    </>
-  );
-}
+      {/* Полезное */}
+      <Route path="/useful" element={<UsefulGrid />} />
+
+      {/* Редирект на главную для неизвестных маршрутов */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+    <BottomNav />
+  </>
+);
+
+export default App;
