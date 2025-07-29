@@ -2,88 +2,81 @@
   font-size: 2rem;
   font-weight: 800;
   color: #fff;
-  margin: 20px 0 16px 16px;
-  text-align: left;
+  margin: 22px 0 16px 16px;
 }
 
-.news-grid {
+.news-cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 17px 8px;
   padding: 0 10px 14px 10px;
-  justify-items: center;
 }
 
-.news-card {
-  width: 176px;
-  min-height: 234px;
+.news-card-simple {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #232429;
-  border-radius: 23px;
-  box-shadow: 0 6px 32px #0003;
-  overflow: hidden;
-  transition: box-shadow 0.15s, transform 0.12s;
+  background: transparent;
+  border-radius: 19px;
+  overflow: visible;
+  width: 176px;
+  min-height: 244px;
   cursor: pointer;
-  border: 1.5px solid #252c38;
 }
 
-.news-card:active {
-  transform: scale(0.98);
-  box-shadow: 0 10px 44px #0af7f233;
-  border-color: #29e3ff;
-}
-
-.news-card-image-wrap {
+.news-card-imgwrap {
   width: 100%;
-  height: 116px;
-  border-radius: 18px 18px 0 0;
+  aspect-ratio: 1.2/1; /* чуть прямоугольнее */
+  background: #222226;
+  border-radius: 18px;
   overflow: hidden;
-  background: #2d2d31;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 13px;
+  box-shadow: 0 3px 16px #15181b0f;
 }
 
-.news-card-image {
+.news-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
+.news-card-texts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .news-card-title {
-  margin-top: 10px;
-  font-size: 1.10rem;
+  font-size: 1.11rem;
   font-weight: 700;
   color: #fff;
   text-align: center;
-  line-height: 1.16;
-  padding: 0 8px;
+  line-height: 1.18;
+  margin-bottom: 4px;
   min-height: 36px;
   max-height: 38px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
   display: -webkit-box;
-  -webkit-line-clamp: 2;    /* max 2 lines */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
 .news-card-content {
-  font-size: 0.97rem;
-  color: #b6ffd6;
+  font-size: 0.99rem;
+  color: #b7ffec;
   text-align: center;
-  padding: 0 10px 12px 10px;
-  margin-top: 2px;
-  line-height: 1.19;
+  line-height: 1.17;
+  padding: 0 4px;
   min-height: 33px;
-  max-height: 36px;
+  max-height: 38px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
   display: -webkit-box;
-  -webkit-line-clamp: 2;   /* max 2 lines */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
