@@ -4,16 +4,16 @@
   bottom: 0;
   width: 100vw;
   height: 60px;
-  background: rgba(23,24,29,0.97);
-  box-shadow: 0 -2px 18px #0005;
-  border-top: 1.5px solid #21232b36;
+  background: rgba(22, 24, 29, 0.92);
+  border-top: 1.5px solid #22314f33;
+  box-shadow: 0 -2px 18px #0008;
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 99;
-  /* Легкий blur для “дорогого” стиля */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px 20px 0 0;
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
   user-select: none;
 }
 
@@ -24,7 +24,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #b2b7c8;
+  color: #b5bdd7;
   font-size: 1rem;
   font-weight: 500;
   padding: 0 2px;
@@ -32,46 +32,42 @@
   background: none;
   outline: none;
   cursor: pointer;
-  transition: color 0.19s, background 0.15s, box-shadow 0.13s;
-  border-radius: 14px;
+  transition: 
+    color 0.16s, 
+    background 0.18s, 
+    box-shadow 0.19s;
+  border-radius: 13px;
   position: relative;
 }
 
 .nav-btn:active {
-  background: rgba(70,170,255,0.07);
+  background: rgba(100, 200, 255, 0.08);
 }
 
 .nav-btn.active,
 .nav-btn[aria-current="page"] {
-  color: #41b0ff;
+  color: #2ecb74;
   font-weight: 700;
-  /* Тонкая линия под активной */
+  background: rgba(30, 255, 170, 0.10);
+  box-shadow: 0 4px 20px #2ecb7429, 0 0.5px 0 #54ffbe28;
 }
-.nav-btn.active::after,
-.nav-btn[aria-current="page"]::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 20%;
-  right: 20%;
-  bottom: 8px;
-  height: 2.6px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #34caff 20%, #89e6ff 100%);
-  opacity: 0.85;
-  box-shadow: 0 1px 7px #87e9ff44;
+
+.nav-btn.active .nav-ico,
+.nav-btn[aria-current="page"] .nav-ico {
+  color: #2ecb74;
+  filter: drop-shadow(0 0 3px #30ffbb9d);
 }
 
 .nav-ico {
-  font-size: 1.45rem;
-  margin-bottom: 0.5px;
+  font-size: 1.37rem;
+  margin-bottom: 2px;
   display: block;
-  transition: color 0.18s;
+  transition: color 0.17s;
 }
 
 .nav-label {
   font-size: 0.84rem;
-  opacity: 0.96;
+  opacity: 0.98;
   margin-top: 2.5px;
   font-weight: 400;
   letter-spacing: 0.1px;
@@ -79,7 +75,7 @@
 
 /* Мобильная адаптация */
 @media (max-width: 600px) {
-  .bottom-nav { height: 52px; }
-  .nav-ico svg { width: 20px; height: 20px; }
-  .nav-label { font-size: 0.77rem; }
+  .bottom-nav { height: 51px; }
+  .nav-ico svg { width: 19px; height: 19px; }
+  .nav-label { font-size: 0.76rem; }
 }
