@@ -10,17 +10,17 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 16px;
-  padding: 0 14px 8px 14px;
-  margin-top: 12px;
+  gap: 13px;
+  padding: 0 13px 7px 13px;
+  margin-top: 10px;
   margin-bottom: 0;
 }
 .product-header-img-wrap {
-  flex: 0 0 120px;
-  max-width: 120px;
-  max-height: 120px;
-  min-width: 105px;
-  min-height: 105px;
+  flex: 0 0 128px;
+  max-width: 128px;
+  max-height: 128px;
+  min-width: 110px;
+  min-height: 110px;
   background: #191919;
   border-radius: 17px;
   overflow: hidden;
@@ -33,7 +33,6 @@
   height: 100%;
   object-fit: cover;
   border-radius: 17px;
-  box-shadow: 0 2px 15px #0002;
   background: #232323;
   display: block;
 }
@@ -42,29 +41,29 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 3px;
+  gap: 2px;
   min-width: 0;
 }
 .product-title {
-  font-size: 1.11rem;
+  font-size: 1.07rem;
   font-weight: 700;
-  margin-bottom: 2px;
+  margin-bottom: 1px;
   margin-top: 0;
-  line-height: 1.13;
+  line-height: 1.09;
   color: #fff;
   word-break: break-word;
 }
 .product-price {
   color: #1be88c;
   font-weight: 700;
-  font-size: 1.06rem;
+  font-size: 1.04rem;
   margin-bottom: 1px;
   margin-top: 1px;
 }
 .product-meta {
   color: #b8f8d6;
   display: flex;
-  gap: 14px;
+  gap: 11px;
   font-size: 0.97rem;
   align-items: center;
 }
@@ -94,13 +93,13 @@
 
 /* Секции */
 .section-block {
-  margin: 12px 14px 0 14px;
+  margin: 11px 13px 0 13px;
 }
 .section-title {
-  font-size: 1rem;
+  font-size: 0.99rem;
   font-weight: 700;
   margin-bottom: 3px;
-  margin-top: 8px;
+  margin-top: 6px;
   display: block;
 }
 .section-title.purple { color: #ba9cff; }
@@ -108,78 +107,81 @@
 .section-title.blue  { color: #79d8fc; }
 
 /* Почему выбирают */
-.why-choose { margin-top: 8px; }
 .why-list {
   color: #ffe89e;
-  font-size: 0.98rem;
-  padding-left: 22px;
-  margin-top: 2px;
+  font-size: 0.96rem;
+  padding-left: 21px;
+  margin-top: 1px;
 }
-.why-list li {
-  margin-bottom: 2px;
-}
+.why-list li { margin-bottom: 1px; }
 
 /* Преимущества */
 .product-advantages {
   color: #fff;
   margin: 0 0 0 0;
-  padding-left: 22px;
-  font-size: 0.99rem;
+  padding-left: 21px;
+  font-size: 0.97rem;
 }
-.product-advantages li {
+.product-advantages li { margin-bottom: 1px; }
+
+/* Описание */
+.product-desc {
+  font-size: 0.98rem;
   margin-bottom: 1px;
 }
 
-/* Бонус/подарок */
-.bonus-block {
-  background: #22262a;
-  color: #1be88c;
-  border-radius: 13px;
-  margin: 10px 14px 0 14px;
-  padding: 10px 11px 8px 11px;
-  font-size: 1.01rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Состав */
+.product-composition em {
+  color: #bfffea;
+  font-size: 0.97rem;
 }
 
-/* PDF-кнопки */
+/* PDF-ссылки без выделения */
 .files-row {
-  gap: 7px;
-  margin: 13px 14px 0 14px;
+  gap: 14px;
+  margin: 12px 13px 0 13px;
   display: flex;
   flex-wrap: wrap;
 }
-.file-btn {
-  padding: 9px 16px;
-  font-size: 1rem;
-  border-radius: 10px;
+.file-link {
+  padding: 0;
+  font-size: 0.99rem;
+  color: #a9bfff;
+  text-decoration: underline dotted;
+  background: none;
   border: none;
-  background: #23244b;
-  color: #e5e7ff;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 4px;
-  transition: background 0.15s;
+  margin-bottom: 2px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.13s;
 }
-.file-btn:hover { background: #383a63; color: #fff; }
+.file-link:hover { color: #6ed9ff; }
 
-/* Кнопки внизу */
+/* Бонус без выделения */
+.bonus-simple {
+  color: #1be88c;
+  margin: 7px 13px 0 13px;
+  font-size: 0.99rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* Кнопки: просто ряд, обычный стиль */
 .btns-row {
-  margin: 16px 14px 0 14px;
+  margin: 13px 13px 0 13px;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 8px;
 }
 .ask-btn {
   flex: 1;
-  padding: 14px 0;
-  background: #242733;
+  padding: 12px 0;
+  background: #232733;
   border-radius: 11px;
   color: #e9eaf6;
-  font-size: 1.03rem;
+  font-size: 1.01rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -188,11 +190,11 @@
 .ask-btn:hover { background: #323545; color: #fff; }
 .cart-btn {
   flex: 2;
-  padding: 14px 0;
-  background: linear-gradient(90deg, #1be88c 0%, #41e8f4 100%);
+  padding: 12px 0;
+  background: #21e87e;
   border-radius: 11px;
   color: #191b1e;
-  font-size: 1.11rem;
+  font-size: 1.09rem;
   font-weight: 700;
   border: none;
   cursor: pointer;

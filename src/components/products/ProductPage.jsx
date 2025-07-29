@@ -62,7 +62,7 @@ const ProductPage = () => {
     <div className="product-page">
       <BackButton />
 
-      {/* Крупное фото слева, текст справа */}
+      {/* Верх: крупное фото слева, компактно текст справа */}
       <div className="product-header-row">
         <div className="product-header-img-wrap">
           <img
@@ -82,7 +82,7 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {/* Галерея миниатюр */}
+      {/* Галерея */}
       <div className="product-gallery-thumbs">
         {product.images?.map((img, idx) => (
           <img
@@ -95,15 +95,14 @@ const ProductPage = () => {
           />
         ))}
       </div>
-
       {modalImg && (
         <div className="img-modal" onClick={() => setModalImg(null)}>
           <img src={modalImg} alt="big" />
         </div>
       )}
 
-      {/* Почему выбирают этот препарат */}
-      <div className="section-block why-choose">
+      {/* Почему выбирают */}
+      <div className="section-block">
         <div className="section-title purple">Почему выбирают этот препарат?</div>
         <ul className="why-list">
           <li>Оригинальная поставка из Кореи</li>
@@ -149,14 +148,14 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* PDF/сертификаты */}
+      {/* PDF/сертификаты - без выделения, просто ссылками */}
       <div className="product-buttons-row files-row">
         {product.passport_pdf && (
           <a
             href={product.passport_pdf}
             target="_blank"
             rel="noopener noreferrer"
-            className="file-btn"
+            className="file-link"
           >
             📄 Паспорт препарата
           </a>
@@ -166,19 +165,19 @@ const ProductPage = () => {
             href={product.protocol_pdf}
             target="_blank"
             rel="noopener noreferrer"
-            className="file-btn"
+            className="file-link"
           >
             📄 Протокол (MSDS)
           </a>
         )}
       </div>
 
-      {/* Бонус/подарок */}
-      <div className="bonus-block">
+      {/* Бонус/подарок — без выделения */}
+      <div className="bonus-simple">
         🎁 Подарок или скидка при оформлении заказа
       </div>
 
-      {/* Кнопки */}
+      {/* Кнопки в одну строку, обычные без заливки */}
       <div className="product-buttons-row btns-row">
         <button
           className="ask-btn"
