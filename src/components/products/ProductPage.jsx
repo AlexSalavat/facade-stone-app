@@ -61,7 +61,7 @@ const ProductPage = () => {
     );
   }
 
-  // Преимущества (разделяем если есть)
+  // Преимущества
   let description = product.description || "";
   let descMain = description;
   let advantages = [];
@@ -77,8 +77,6 @@ const ProductPage = () => {
     advantages = advText;
   }
   let composition = product.composition || "";
-
-  // Динамический бейдж
   const badge = getBadge(product.status);
 
   return (
@@ -87,7 +85,7 @@ const ProductPage = () => {
 
       {/* --- Главный блок --- */}
       <div className="product-main-compact">
-        <div className="product-main-img-wrap large">
+        <div className="product-main-img-wrap xlarge">
           <img
             src={product.images?.[0]}
             alt={product.name}
@@ -96,7 +94,7 @@ const ProductPage = () => {
           />
           {badge}
         </div>
-        <div className="product-main-info">
+        <div className="product-main-info tight">
           <div className="product-title">{product.name}</div>
           <div className="product-price">{product.price} ₽</div>
           <div className="product-meta">
@@ -172,7 +170,7 @@ const ProductPage = () => {
         </div>
       )}
 
-      {/* PDF/Сертификаты в одну строку */}
+      {/* PDF/Сертификаты */}
       {(product.passport_pdf || product.protocol_pdf) && (
         <div className="product-buttons-row pdf-row pdf-row-inline">
           {product.passport_pdf && (
@@ -200,17 +198,17 @@ const ProductPage = () => {
       )}
 
       {/* Бонус/Подарок */}
-      <div className="bonus-block">
-        🎁 Пробник в подарок при покупке от 3 шт!
+      <div className="bonus-block simple">
+        <span role="img" aria-label="gift">🎁</span> Подарок или скидка при оформлении заказа
       </div>
 
-      {/* Нижний action-блок — вопросы и корзина рядом! */}
-      <div className="action-row-bottom">
+      {/* Нижний action-блок */}
+      <div className="action-row-bottom new-tight">
         <button
           className="btn ask-btn custom-btn"
           onClick={() => window.Telegram?.WebApp?.openTelegramLink?.()}
         >
-          💬 Задать вопрос
+          <span role="img" aria-label="question">💬</span> Задать вопрос
         </button>
         <button className="btn cart-btn" onClick={handleAddToCart}>
           В корзину
