@@ -10,7 +10,6 @@ export function useCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Теперь qty можно указать
   const addToCart = (item, qty = 1) => {
     setCart(prev => {
       const exist = prev.find(p => p.id === item.id);
@@ -29,7 +28,7 @@ export function useCart() {
 
   const updateQty = (id, qty) => {
     setCart(prev =>
-      prev.map(p => p.id === id ? { ...p, qty } : p)
+      prev.map(p => p.id === id ? { ...p, qty: Math.max(1, qty) } : p)
     );
   };
 
