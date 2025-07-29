@@ -17,7 +17,7 @@ body,
 
 .main-content {
   min-height: 100vh;
-  padding-bottom: 70px;
+  padding-bottom: 90px; /* чтобы контент не был перекрыт баром! */
   box-sizing: border-box;
   display: flex;
   align-items: center;

@@ -20,13 +20,14 @@ export default function BottomNav() {
         </span>
         <span className="nav-label">Новости</span>
       </NavLink>
-      <NavLink to="/market" className="nav-btn">
+      <NavLink to="/useful" className="nav-btn">
         <span className="nav-ico">
           <svg width="24" height="24" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M16 6V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H2v2h2l3.6 7.59-1.35 2.45A2 2 0 0 0 7 19h10a2 2 0 0 0 1.75-2.96l-1.35-2.44L20 8h2V6h-6zm-6-2h4v2h-4V4z"/>
+            {/* bulb */}
+            <path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 2.87 2.09 5.22 5 5.8V17h4v-2.2c2.91-.58 5-2.93 5-5.8a7 7 0 0 0-7-7zm1 17h-2v2h2v-2z"/>
           </svg>
         </span>
-        <span className="nav-label">Маркет</span>
+        <span className="nav-label">Полезное</span>
       </NavLink>
       <NavLink to="/cart" className="nav-btn">
         <span className="nav-ico">
