@@ -5,10 +5,12 @@ export default function Home() {
     <div className="home">
       <div className="home-bg" />
       <div className="home-overlay">
-        <h1 className="home-title">LumiSkin PRO</h1>
+        <h1 className="home-title">KERAMOGROUP</h1>
         <p className="home-desc">
-          Каталог оригинальных корейских инъекций.<br />
-          Новости, поставки, современная косметология.
+          Современный искусственный камень<br />
+          для облицовки фасадов, цоколей и заборов.<br />
+          Эстетика, прочность и стиль для вашего дома.<br /><br />
+          Примерьте наш камень на свой будущий фасад — прямо онлайн!
         </p>
       </div>
     </div>
