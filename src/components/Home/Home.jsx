@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="home">
       <div className="home-bg" />
-      <div className="home-overlay">
+      <div className="home-text">
         <h1 className="home-title">KERAMOGROUP</h1>
         <div className="home-subtitle">
           Искусственный камень для фасадов.<br />
